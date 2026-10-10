@@ -26,11 +26,11 @@ import {
   Star,
   ArrowUpRight,
   Command,
-  Cube,
   X,
   List,
 } from "@phosphor-icons/react";
 import { ThemeToggle } from "./theme-toggle";
+import { Logo } from "./logo";
 
 function getToolIcon(name: string) {
   switch (name) {
@@ -160,9 +160,7 @@ export function ToolboxHome() {
       <header className="sticky top-0 z-40 border-b border-zinc-800/70 bg-[#090a0b]/90 backdrop-blur-md">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3.5">
           <Link href="/" className="flex items-center gap-2.5">
-            <span className="flex h-7 w-7 items-center justify-center rounded-md bg-zinc-100 text-zinc-900">
-              <Cube size={16} weight="bold" />
-            </span>
+            <Logo />
             <span className="text-[15px] font-semibold tracking-tight text-zinc-100">
               Byte-Kit
             </span>

@@ -1,4 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="14" fill="#0f172a"/>
-  <text x="31" y="43" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="27" font-weight="700" fill="#f8fafc" text-anchor="middle">&gt;_</text>
+  <rect width="64" height="64" rx="14" fill="#090a0b"/>
+  <g fill="#f4f4f5">
+    <circle cx="12" cy="22" r="5.6"/>
+    <circle cx="26" cy="22" r="5.6"/>
+    <circle cx="40" cy="22" r="5.6"/>
+    <circle cx="54" cy="22" r="5.6"/>
+    <circle cx="12" cy="42" r="5.6"/>
+    <circle cx="26" cy="42" r="5.6"/>
+    <circle cx="40" cy="42" r="5.6"/>
+  </g>
+  <circle cx="54" cy="42" r="5.6" fill="#3b82f6"/>
 </svg>
