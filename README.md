@@ -48,43 +48,4 @@ deploys `out/` to GitHub Pages on every push to `main`. To enable it:
 
 The workflow already sets `NEXT_PUBLIC_SITE_URL` and `NEXT_PUBLIC_BASE_PATH`
 for `shayan34789.github.io/byte-kit` — update them in the workflow file if the
-repo name or a custom domain changes. Note the video-tools limitation below:
-GitHub Pages cannot send the required headers, so the 8 video tools show a
-notice there instead of failing.
-
-## Required headers for the video tools
-
-The video tools run FFmpeg (WebAssembly) with multi-threading, which needs
-`SharedArrayBuffer`. Browsers only enable it when the site sends these headers:
-
-```
-Cross-Origin-Opener-Policy: same-origin
-Cross-Origin-Embedder-Policy: require-corp
-```
-
-Without them, the other 24 tools work fine but the 8 video tools will fail to
-load their engine. How to set the headers depends on the host:
-
-- **Vercel** — add to `vercel.json`:
-  ```json
-  {
-    "headers": [
-      {
-        "source": "/(.*)",
-        "headers": [
-          { "key": "Cross-Origin-Opener-Policy", "value": "same-origin" },
-          { "key": "Cross-Origin-Embedder-Policy", "value": "require-corp" }
-        ]
-      }
-    ]
-  }
-  ```
-- **Netlify / Cloudflare Pages** — add a `_headers` file to `out/` after
-  building (or to `public/` so it is copied automatically):
-  ```
-  /*
-    Cross-Origin-Opener-Policy: same-origin
-    Cross-Origin-Embedder-Policy: require-corp
-  ```
-- **GitHub Pages** cannot send custom headers, so the video tools will not
-  work there. Use one of the hosts above if video support matters.
+repo name or a custom domain changes.

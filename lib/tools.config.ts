@@ -9,8 +9,7 @@ export type ToolCategory =
   | "Debugging"
   | "Generator"
   | "AI"
-  | "Image"
-  | "Video";
+  | "Image";
 
 export type ToolDefinition = {
   slug: string;
@@ -34,7 +33,6 @@ export const categories = [
   "Text",
   "Color",
   "Image",
-  "Video",
   "Debugging",
 ] as const;
 
@@ -362,118 +360,6 @@ export const tools: ToolDefinition[] = [
       "Click Generate favicon.",
       "Preview the 16, 32, and 48px icons.",
       "Download favicon.ico or the individual PNGs.",
-    ],
-  },
-  {
-    slug: "mov-to-mp4",
-    title: "MOV to MP4 Converter",
-    description: "Convert QuickTime MOV videos to MP4, with lossless remux when possible.",
-    category: "Video",
-    iconName: "FilmStrip",
-    implemented: true,
-    usage: [
-      "Drop a MOV file onto the upload area.",
-      "Choose Auto to remux losslessly when the codecs allow it.",
-      "Click Convert and wait for the engine to finish.",
-      "Download the MP4 file.",
-    ],
-  },
-  {
-    slug: "mkv-to-mp4",
-    title: "MKV to MP4 Converter",
-    description: "Convert MKV to MP4, remuxed losslessly when codecs allow.",
-    category: "Video",
-    iconName: "FilmSlate",
-    implemented: true,
-    usage: [
-      "Drop an MKV file onto the upload area.",
-      "Choose Auto to copy streams untouched when compatible.",
-      "Click Convert and wait for the engine to finish.",
-      "Download the MP4 file.",
-    ],
-  },
-  {
-    slug: "webm-to-mp4",
-    title: "WebM to MP4 Converter",
-    description: "Convert WebM (VP8/VP9) to universally playable H.264 MP4.",
-    category: "Video",
-    iconName: "MonitorPlay",
-    implemented: true,
-    usage: [
-      "Drop a WebM file onto the upload area.",
-      "Pick a quality level.",
-      "Click Convert and wait for the engine to finish.",
-      "Download the MP4 file.",
-    ],
-  },
-  {
-    slug: "mp4-to-webm",
-    title: "MP4 to WebM Converter",
-    description: "Convert MP4 to WebM (VP8 + Opus) for smaller web-ready video.",
-    category: "Video",
-    iconName: "VideoCamera",
-    implemented: true,
-    usage: [
-      "Drop an MP4 file onto the upload area.",
-      "Pick a quality level.",
-      "Click Convert and download the WebM file.",
-      "Download the WebM file.",
-    ],
-  },
-  {
-    slug: "video-to-gif",
-    title: "Video to GIF Converter",
-    description: "Turn any video into an animated GIF, with fps, width and loop controls.",
-    category: "Video",
-    iconName: "Play",
-    implemented: true,
-    usage: [
-      "Drop a video file onto the upload area.",
-      "Set frames per second and output width.",
-      "Click Convert to render the GIF with a two-pass palette.",
-      "Download the GIF file.",
-    ],
-  },
-  {
-    slug: "gif-to-mp4",
-    title: "GIF to MP4 Converter",
-    description: "Convert animated GIFs to compact, silent H.264 MP4 video.",
-    category: "Video",
-    iconName: "FastForward",
-    implemented: true,
-    usage: [
-      "Drop a GIF file onto the upload area.",
-      "Optionally cap the output width.",
-      "Click Convert.",
-      "Download the MP4 file.",
-    ],
-  },
-  {
-    slug: "video-compressor",
-    title: "Video Compressor",
-    description: "Shrink video file size by bitrate and resolution, privately in your browser.",
-    category: "Video",
-    iconName: "ArrowDown",
-    implemented: true,
-    usage: [
-      "Drop a video file onto the upload area.",
-      "Choose a target resolution and quality level.",
-      "Click Convert — output is always MP4.",
-      "Compare sizes and download the compressed video.",
-    ],
-  },
-  {
-    slug: "video-trimmer",
-    title: "Video Trimmer",
-    description: "Cut a time range from any video: lossless by default, precise mode optional.",
-    category: "Video",
-    iconName: "Scissors",
-    implemented: true,
-    usage: [
-      "Drop a video file onto the upload area.",
-      "Enter start and end times (seconds or mm:ss).",
-      "Pick Lossless for speed or Precise for frame accuracy.",
-      "Click Convert and download the trimmed video.",
     ],
   },
 ];

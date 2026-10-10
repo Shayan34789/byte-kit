@@ -54,10 +54,6 @@ const FaviconGenerator = dynamic(
   () => import("./tools/favicon-generator").then((m) => m.FaviconGenerator),
   { ssr: false, loading: () => <ToolLoading /> }
 );
-const VideoTool = dynamic(
-  () => import("./tools/video/VideoTool").then((m) => m.VideoTool),
-  { ssr: false, loading: () => <ToolLoading /> }
-);
 
 type Props = { slug: string };
 
@@ -1025,22 +1021,6 @@ export function ToolWorkbench({ slug }: Props) {
       return <SvgOptimizer />;
     case "favicon-generator":
       return <FaviconGenerator />;
-    case "mov-to-mp4":
-      return <VideoTool key="mov-to-mp4" op="mov-to-mp4" />;
-    case "mkv-to-mp4":
-      return <VideoTool key="mkv-to-mp4" op="mkv-to-mp4" />;
-    case "webm-to-mp4":
-      return <VideoTool key="webm-to-mp4" op="webm-to-mp4" />;
-    case "mp4-to-webm":
-      return <VideoTool key="mp4-to-webm" op="mp4-to-webm" />;
-    case "video-to-gif":
-      return <VideoTool key="video-to-gif" op="video-to-gif" />;
-    case "gif-to-mp4":
-      return <VideoTool key="gif-to-mp4" op="gif-to-mp4" />;
-    case "video-compressor":
-      return <VideoTool key="video-compressor" op="video-compressor" />;
-    case "video-trimmer":
-      return <VideoTool key="video-trimmer" op="video-trimmer" />;
     default:
       return (
         <div className="rounded-xl border border-zinc-800 bg-zinc-900/40 p-8 text-center font-mono text-xs text-zinc-500">

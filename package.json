@@ -9,10 +9,6 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@ffmpeg/core": "^0.12.10",
-    "@ffmpeg/core-st": "^0.11.1",
-    "@ffmpeg/ffmpeg": "^0.12.15",
-    "@ffmpeg/util": "^0.12.2",
     "@phosphor-icons/react": "^2.1.10",
     "heic2any": "^0.0.4",
     "jszip": "^3.10.2",

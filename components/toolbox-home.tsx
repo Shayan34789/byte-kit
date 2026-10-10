@@ -24,14 +24,6 @@ import {
   Images,
   FileImage,
   Star,
-  FilmStrip,
-  FilmSlate,
-  VideoCamera,
-  MonitorPlay,
-  Play,
-  FastForward,
-  ArrowDown,
-  Scissors,
   ArrowUpRight,
   Command,
   Cube,
@@ -80,22 +72,6 @@ function getToolIcon(name: string) {
       return FileImage;
     case "Star":
       return Star;
-    case "FilmStrip":
-      return FilmStrip;
-    case "FilmSlate":
-      return FilmSlate;
-    case "VideoCamera":
-      return VideoCamera;
-    case "MonitorPlay":
-      return MonitorPlay;
-    case "Play":
-      return Play;
-    case "FastForward":
-      return FastForward;
-    case "ArrowDown":
-      return ArrowDown;
-    case "Scissors":
-      return Scissors;
     default:
       return Sparkle;
   }
