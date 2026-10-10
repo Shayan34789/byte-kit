@@ -30,9 +30,13 @@ jobs:
       - name: Build static site
         run: npm run build
         env:
-          # Project page URL — update if the repo name or custom domain changes
-          NEXT_PUBLIC_SITE_URL: https://shayan34789.github.io/byte-kit
-          NEXT_PUBLIC_BASE_PATH: /byte-kit
+          # Custom domain: the site is served from the domain root, so no
+          # base path is needed. (If you ever go back to the
+          # username.github.io/<repo> project URL, set
+          # NEXT_PUBLIC_BASE_PATH to /<repo> and NEXT_PUBLIC_SITE_URL
+          # to https://<user>.github.io/<repo>.)
+          NEXT_PUBLIC_SITE_URL: https://byte-kit.dev
+          NEXT_PUBLIC_BASE_PATH: ""
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:

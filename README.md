@@ -47,5 +47,6 @@ deploys `out/` to GitHub Pages on every push to `main`. To enable it:
    `https://<user>.github.io/<repo>/`.
 
 The workflow already sets `NEXT_PUBLIC_SITE_URL` and `NEXT_PUBLIC_BASE_PATH`
-for `shayan34789.github.io/byte-kit` — update them in the workflow file if the
-repo name or a custom domain changes.
+for the `byte-kit.dev` custom domain (served from the domain root, so no base
+path). If the domain or hosting path ever changes, update them in
+`.github/workflows/deploy.yml`.
