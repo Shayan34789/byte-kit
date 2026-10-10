@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { CookieBanner } from "@/components/cookie-banner";
 import { BackToTop } from "@/components/back-to-top";
 import { ScrollProgress } from "@/components/scroll-progress";
+import { GoogleAnalytics } from "@/components/google-analytics";
 import { siteUrl, StructuredData } from "@/lib/structured-data";
 import "./globals.css";
 
@@ -79,6 +80,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <body className={`${inter.variable} min-h-[100dvh] bg-canvas text-ink antialiased`}>
+        <GoogleAnalytics />
         <ScrollProgress />
         {children}
         <CookieBanner />

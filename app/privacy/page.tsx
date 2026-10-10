@@ -6,14 +6,14 @@ import { siteUrl, StructuredData } from "@/lib/structured-data";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
-    "Byte-Kit privacy policy: all tools run entirely in your browser. No uploads, no tracking, no personal data collected.",
+    "Byte-Kit privacy policy: all tools run entirely in your browser. No uploads, no personal data collected.",
   alternates: {
     canonical: `${siteUrl}/privacy`,
   },
   openGraph: {
     title: "Privacy Policy · Byte-Kit",
     description:
-      "Byte-Kit privacy policy: all tools run entirely in your browser. No uploads, no tracking, no personal data collected.",
+      "Byte-Kit privacy policy: all tools run entirely in your browser. No uploads, no personal data collected.",
     url: `${siteUrl}/privacy`,
     images: [
       {
@@ -36,7 +36,7 @@ const sections = [
   {
     heading: "Information we collect",
     body: [
-      "None. Byte-Kit does not ask you to create an account, does not ask for your name or email, and does not collect analytics, usage statistics, or telemetry of any kind. There is nothing sent from your browser to our servers when you use the tools.",
+      "Byte-Kit does not ask you to create an account and does not ask for your name or email. The tools themselves send nothing from your browser to our servers. We do use Google Analytics to understand aggregate usage (pages visited, device types) — it collects no personal information and IP addresses are anonymized.",
     ],
   },
   {
@@ -61,7 +61,7 @@ const sections = [
   {
     heading: "Third-party services",
     body: [
-      "There are none. The site loads no third-party scripts, no advertising networks, no analytics providers, and no external fonts or CDNs. What you see is served as static files and runs offline-capable in your browser.",
+      "One: Google Analytics, which helps us understand aggregate site usage. It is configured with IP anonymization and collects no personal information. Everything else is served as static files — no advertising networks, no external fonts or CDNs. The tools themselves run offline-capable in your browser.",
     ],
   },
   {
@@ -94,7 +94,7 @@ export default function PrivacyPage() {
           name: "Privacy Policy — Byte-Kit",
           url: `${siteUrl}/privacy`,
           description:
-            "Byte-Kit privacy policy: all tools run entirely in your browser. No uploads, no tracking, no personal data collected.",
+            "Byte-Kit privacy policy: all tools run entirely in your browser. No uploads, no personal data collected.",
           isPartOf: { "@type": "WebSite", name: "Byte-Kit", url: siteUrl },
         }}
       />

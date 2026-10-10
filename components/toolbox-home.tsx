@@ -322,6 +322,7 @@ export function ToolboxHome() {
                   <Link
                     key={tool.slug}
                     href={`/tools/${tool.slug}`}
+                    prefetch={false}
                     className="group rounded-xl border border-zinc-800/80 bg-[#101012] p-5 transition-colors hover:border-zinc-600"
                   >
                     <div className="flex items-center justify-between">

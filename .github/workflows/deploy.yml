@@ -37,6 +37,10 @@ jobs:
           # to https://<user>.github.io/<repo>.)
           NEXT_PUBLIC_SITE_URL: https://byte-kit.dev
           NEXT_PUBLIC_BASE_PATH: ""
+          # Google Analytics 4: set NEXT_PUBLIC_GA_MEASUREMENT_ID as a repository
+          # secret (Settings → Secrets → Actions) to enable tracking. Leave unset
+          # to ship without analytics.
+          NEXT_PUBLIC_GA_MEASUREMENT_ID: ${{ secrets.NEXT_PUBLIC_GA_MEASUREMENT_ID }}
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:

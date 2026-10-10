@@ -23,7 +23,7 @@ export function CookieBanner() {
   return (
     <div className="fixed inset-x-4 bottom-4 z-50 mx-auto flex max-w-3xl flex-col gap-4 rounded-2xl border border-zinc-800 bg-zinc-950/95 p-4 shadow-xl sm:flex-row sm:items-center sm:justify-between sm:px-5">
       <p className="text-sm leading-6 text-zinc-300">
-        We use a small cookie to remember your preferences. No tracking or personal data is collected.
+        We use a small cookie to remember your preferences, plus privacy-friendly analytics to understand aggregate usage. No personal data is collected.
       </p>
       <button
         type="button"
