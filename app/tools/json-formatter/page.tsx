@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { JsonFormatter } from "@/components/json-formatter";
 import { ToolShell } from "@/components/tool-shell";
 import { getTool } from "@/lib/tools.config";
-import { siteUrl } from "@/lib/structured-data";
+import { toolContent } from "@/lib/tool-content";
+import { siteUrl, StructuredData } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
   title: "JSON Formatter & Validator",
@@ -29,9 +30,25 @@ export const metadata: Metadata = {
 };
 
 export default function JsonFormatterPage() {
+  const content = toolContent["json-formatter"];
   return (
-    <ToolShell title="JSON Formatter & Validator" description="Clean up, validate, beautify, or minify JSON without uploading it anywhere." category="Formatter" usage={getTool("json-formatter")?.usage}>
-      <JsonFormatter />
-    </ToolShell>
+    <>
+      {content && content.faqs.length > 0 && (
+        <StructuredData
+          data={{
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: content.faqs.map((faq) => ({
+              "@type": "Question",
+              name: faq.question,
+              acceptedAnswer: { "@type": "Answer", text: faq.answer },
+            })),
+          }}
+        />
+      )}
+      <ToolShell title="JSON Formatter & Validator" description="Clean up, validate, beautify, or minify JSON without uploading it anywhere." category="Formatter" usage={getTool("json-formatter")?.usage} content={content}>
+        <JsonFormatter />
+      </ToolShell>
+    </>
   );
 }

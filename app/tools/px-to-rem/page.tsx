@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { PxToRem } from "@/components/px-to-rem";
 import { ToolShell } from "@/components/tool-shell";
 import { getTool } from "@/lib/tools.config";
-import { siteUrl } from "@/lib/structured-data";
+import { toolContent } from "@/lib/tool-content";
+import { siteUrl, StructuredData } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
   title: "PX to REM Converter",
@@ -29,9 +30,25 @@ export const metadata: Metadata = {
 };
 
 export default function PxToRemPage() {
+  const content = toolContent["px-to-rem"];
   return (
-    <ToolShell title="PX to REM Converter" description="Convert pixel values to rem units with a customizable root font size." category="CSS" usage={getTool("px-to-rem")?.usage}>
-      <PxToRem />
-    </ToolShell>
+    <>
+      {content && content.faqs.length > 0 && (
+        <StructuredData
+          data={{
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: content.faqs.map((faq) => ({
+              "@type": "Question",
+              name: faq.question,
+              acceptedAnswer: { "@type": "Answer", text: faq.answer },
+            })),
+          }}
+        />
+      )}
+      <ToolShell title="PX to REM Converter" description="Convert pixel values to rem units with a customizable root font size." category="CSS" usage={getTool("px-to-rem")?.usage} content={content}>
+        <PxToRem />
+      </ToolShell>
+    </>
   );
 }

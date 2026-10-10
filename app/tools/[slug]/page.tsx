@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { ToolShell } from "@/components/tool-shell";
 import { ToolWorkbench } from "@/components/tool-workbench";
 import { getTool, tools } from "@/lib/tools.config";
+import { toolContent } from "@/lib/tool-content";
 import { siteUrl, StructuredData } from "@/lib/structured-data";
 
 export function generateStaticParams() {
@@ -65,6 +66,7 @@ export default async function DynamicToolPage({
   const relatedTools = tools
     .filter((candidate) => candidate.category === tool.category && candidate.slug !== tool.slug)
     .slice(0, 3);
+  const content = toolContent[tool.slug];
 
   return (
     <>
@@ -83,6 +85,19 @@ export default async function DynamicToolPage({
           isPartOf: { "@type": "WebSite", name: "Byte-Kit", url: siteUrl },
         }}
       />
+      {content && content.faqs.length > 0 && (
+        <StructuredData
+          data={{
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: content.faqs.map((faq) => ({
+              "@type": "Question",
+              name: faq.question,
+              acceptedAnswer: { "@type": "Answer", text: faq.answer },
+            })),
+          }}
+        />
+      )}
       <StructuredData
         data={{
           "@context": "https://schema.org",
@@ -94,7 +109,7 @@ export default async function DynamicToolPage({
           ],
         }}
       />
-      <ToolShell title={tool.title} description={tool.description} category={tool.category} relatedTools={relatedTools} usage={tool.usage}>
+      <ToolShell title={tool.title} description={tool.description} category={tool.category} relatedTools={relatedTools} usage={tool.usage} content={content}>
         <ToolWorkbench slug={tool.slug} />
       </ToolShell>
     </>

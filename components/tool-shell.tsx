@@ -2,7 +2,9 @@ import Link from "next/link";
 import { ArrowLeft, ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 import { Logo } from "./logo";
 import { ThemeToggle } from "./theme-toggle";
+import { ToolFaq } from "./tool-faq";
 import type { ToolDefinition } from "@/lib/tools.config";
+import type { ToolContent } from "@/lib/tool-content";
 
 export function ToolShell({
   title,
@@ -10,6 +12,7 @@ export function ToolShell({
   category,
   relatedTools,
   usage,
+  content,
   children,
 }: {
   title: string;
@@ -17,6 +20,7 @@ export function ToolShell({
   category: string;
   relatedTools?: ToolDefinition[];
   usage?: string[];
+  content?: ToolContent;
   children: React.ReactNode;
 }) {
   return (
@@ -61,6 +65,21 @@ export function ToolShell({
           {children}
         </div>
 
+        {content && content.details.length > 0 && (
+          <section className="mt-12" aria-labelledby="about-tool-heading">
+            <h2 id="about-tool-heading" className="text-lg font-semibold tracking-tight text-zinc-100">
+              About this tool
+            </h2>
+            <div className="mt-4 max-w-2xl space-y-4">
+              {content.details.map((paragraph, index) => (
+                <p key={index} className="text-[15px] leading-relaxed text-zinc-400">
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+          </section>
+        )}
+
         {usage && usage.length > 0 && (
           <section className="mt-12" aria-labelledby="how-to-use-heading">
             <h2 id="how-to-use-heading" className="text-lg font-semibold tracking-tight text-zinc-100">
@@ -78,6 +97,8 @@ export function ToolShell({
             </ol>
           </section>
         )}
+
+        {content && content.faqs.length > 0 && <ToolFaq faqs={content.faqs} />}
 
         {relatedTools && relatedTools.length > 0 && (
           <section className="mt-12" aria-labelledby="related-tools-heading">
