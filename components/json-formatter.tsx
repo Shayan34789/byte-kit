@@ -48,7 +48,7 @@ export function JsonFormatter() {
               Malformed JSON
             </span>
           ) : (
-            <span className="inline-flex items-center gap-1.5 text-teal-400">
+            <span className="inline-flex items-center gap-1.5 text-blue-400">
               <CheckCircle size={15} weight="fill" />
               Valid JSON Structure
             </span>
@@ -61,7 +61,7 @@ export function JsonFormatter() {
             onClick={() => setMode("pretty")}
             className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 font-mono text-xs font-medium transition-all ${
               mode === "pretty"
-                ? "border border-teal-500/40 bg-teal-500/20 text-teal-300"
+                ? "border border-blue-500/40 bg-blue-500/20 text-blue-300"
                 : "border border-zinc-800 bg-zinc-800/60 text-zinc-400 hover:text-zinc-200"
             }`}
           >
@@ -73,7 +73,7 @@ export function JsonFormatter() {
             onClick={() => setMode("minify")}
             className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 font-mono text-xs font-medium transition-all ${
               mode === "minify"
-                ? "border border-teal-500/40 bg-teal-500/20 text-teal-300"
+                ? "border border-blue-500/40 bg-blue-500/20 text-blue-300"
                 : "border border-zinc-800 bg-zinc-800/60 text-zinc-400 hover:text-zinc-200"
             }`}
           >
@@ -102,7 +102,7 @@ export function JsonFormatter() {
         <div>
           <div className="flex items-center justify-between border-b border-zinc-800/60 bg-zinc-900/60 px-4 py-2 font-mono text-[11px] uppercase tracking-wider text-zinc-500">
             <span>Buffer Out</span>
-            <span className={result.error ? "text-rose-400" : "text-teal-400"}>
+            <span className={result.error ? "text-rose-400" : "text-blue-400"}>
               {result.error ? "Parse Error" : `${result.output.length} bytes`}
             </span>
           </div>

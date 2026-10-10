@@ -29,7 +29,7 @@ export function PxToRem() {
               step="0.25"
               value={value}
               onChange={(e) => setValue(e.target.value)}
-              className="w-full rounded-xl border border-zinc-800 bg-[#121316] px-4 py-3.5 pr-12 font-mono text-2xl font-bold text-zinc-100 outline-none transition focus:border-teal-500/50 focus:ring-1 focus:ring-teal-500/20"
+              className="w-full rounded-xl border border-zinc-800 bg-[#121316] px-4 py-3.5 pr-12 font-mono text-2xl font-bold text-zinc-100 outline-none transition focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/20"
             />
             <span className="absolute right-4 top-4 font-mono text-xs font-semibold text-zinc-500">
               PX
@@ -48,7 +48,7 @@ export function PxToRem() {
             </label>
             <CopyButton value={result} />
           </div>
-          <div className="flex h-[58px] items-center rounded-xl border border-teal-500/30 bg-teal-500/10 px-4 font-mono text-2xl font-bold text-teal-300">
+          <div className="flex h-[58px] items-center rounded-xl border border-blue-500/30 bg-blue-500/10 px-4 font-mono text-2xl font-bold text-blue-300">
             {result || "—"}
           </div>
         </div>

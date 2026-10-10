@@ -21,10 +21,34 @@ export async function generateMetadata({
     return { title: "Tool not found" };
   }
 
+  const description = `${tool.description} Processed entirely in your browser with no uploads.`;
+
   return {
     title: tool.title,
-    description: `${tool.description} Processed entirely in your browser with no uploads.`,
+    description,
     keywords: [tool.title, `${tool.category} developer tool`, "browser-based utility"],
+    alternates: {
+      canonical: `${siteUrl}/tools/${slug}`,
+    },
+    openGraph: {
+      title: `${tool.title} · Byte-Kit`,
+      description,
+      url: `${siteUrl}/tools/${slug}`,
+      images: [
+        {
+          url: `${siteUrl}/og-image.png`,
+          width: 1200,
+          height: 630,
+          alt: tool.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${tool.title} · Byte-Kit`,
+      description,
+      images: [`${siteUrl}/og-image.png`],
+    },
   };
 }
 
@@ -70,7 +94,7 @@ export default async function DynamicToolPage({
           ],
         }}
       />
-      <ToolShell title={tool.title} description={tool.description} category={tool.category} relatedTools={relatedTools}>
+      <ToolShell title={tool.title} description={tool.description} category={tool.category} relatedTools={relatedTools} usage={tool.usage}>
         <ToolWorkbench slug={tool.slug} />
       </ToolShell>
     </>

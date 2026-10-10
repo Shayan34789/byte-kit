@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import { categories, tools, type ToolDefinition } from "@/lib/tools.config";
+import { categories, tools } from "@/lib/tools.config";
+import { faqs } from "@/lib/faq";
 import {
   MagnifyingGlass,
   BracketsCurly,
@@ -20,12 +21,20 @@ import {
   Palette,
   Code,
   Sparkle,
-  ShieldCheck,
-  Cpu,
+  Images,
+  FileImage,
+  Star,
+  FilmStrip,
+  FilmSlate,
+  VideoCamera,
+  MonitorPlay,
+  Play,
+  FastForward,
+  ArrowDown,
+  Scissors,
   ArrowUpRight,
   Command,
   Cube,
-  SlidersHorizontal,
   X,
   List,
 } from "@phosphor-icons/react";
@@ -64,22 +73,84 @@ function getToolIcon(name: string) {
     case "Code":
       return Code;
     case "Sparkle":
+      return Sparkle;
+    case "Images":
+      return Images;
+    case "FileImage":
+      return FileImage;
+    case "Star":
+      return Star;
+    case "FilmStrip":
+      return FilmStrip;
+    case "FilmSlate":
+      return FilmSlate;
+    case "VideoCamera":
+      return VideoCamera;
+    case "MonitorPlay":
+      return MonitorPlay;
+    case "Play":
+      return Play;
+    case "FastForward":
+      return FastForward;
+    case "ArrowDown":
+      return ArrowDown;
+    case "Scissors":
+      return Scissors;
     default:
       return Sparkle;
   }
 }
 
+function FaqSection() {
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
+
+  return (
+    <section aria-labelledby="faq-heading" className="border-t border-zinc-800/70 py-16 sm:py-20">
+      <h2 id="faq-heading" className="text-2xl font-semibold tracking-tight text-zinc-100 sm:text-3xl">
+        Frequently asked questions
+      </h2>
+      <div className="mt-8 divide-y divide-zinc-800/70 border-y border-zinc-800/70">
+        {faqs.map((faq, index) => {
+          const open = openIndex === index;
+          return (
+            <div key={faq.question}>
+              <button
+                type="button"
+                onClick={() => setOpenIndex(open ? null : index)}
+                aria-expanded={open}
+                className="flex w-full items-center justify-between gap-4 py-5 text-left"
+              >
+                <span className="text-[15px] font-medium text-zinc-100">{faq.question}</span>
+                <span
+                  className={`shrink-0 text-xl leading-none text-zinc-500 transition-transform duration-200 ${open ? "rotate-45" : ""}`}
+                  aria-hidden="true"
+                >
+                  +
+                </span>
+              </button>
+              {open && (
+                <p className="max-w-2xl pb-6 text-[15px] leading-relaxed text-zinc-400">
+                  {faq.answer}
+                </p>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
 export function ToolboxHome() {
   const [query, setQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState<(typeof categories)[number]>("All");
-  const [activeFilter, setActiveFilter] = useState<"all" | "core" | "io">("all");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleShortcut = (e: KeyboardEvent) => {
       if (e.key === "/" || ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k")) {
         e.preventDefault();
-        document.getElementById("runtime-search")?.focus();
+        document.getElementById("tool-search")?.focus();
       }
     };
     window.addEventListener("keydown", handleShortcut);
@@ -109,47 +180,26 @@ export function ToolboxHome() {
   const searchSuggestions = query.trim() ? filteredTools.slice(0, 5) : [];
 
   return (
-    <div className="relative min-h-[100dvh] bg-[#090a0b] text-[#f4f4f5] selection:bg-teal-500/20 selection:text-teal-300">
-      {/* Precision ambient background glow */}
-      <div className="pointer-events-none fixed inset-0 overflow-hidden">
-        <div className="absolute -top-40 right-1/4 h-[420px] w-[500px] rounded-full bg-teal-500/5 blur-[140px]" />
-        <div className="absolute top-[40%] -left-32 h-[380px] w-[460px] rounded-full bg-emerald-500/5 blur-[160px]" />
-      </div>
+    <div className="min-h-[100dvh] bg-[#090a0b] text-[#f4f4f5]">
+      <header className="sticky top-0 z-40 border-b border-zinc-800/70 bg-[#090a0b]/90 backdrop-blur-md">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3.5">
+          <Link href="/" className="flex items-center gap-2.5">
+            <span className="flex h-7 w-7 items-center justify-center rounded-md bg-zinc-100 text-zinc-900">
+              <Cube size={16} weight="bold" />
+            </span>
+            <span className="text-[15px] font-semibold tracking-tight text-zinc-100">
+              Byte-Kit
+            </span>
+          </Link>
 
-      {/* Top Utility Header */}
-      <header className="sticky top-0 z-40 border-b border-zinc-800/80 bg-[#090a0b]/85 shadow-[0_8px_24px_rgba(0,0,0,0.12)] backdrop-blur-md supports-[backdrop-filter]:bg-[#090a0b]/75">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-          <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-zinc-700 bg-zinc-900 text-teal-400 shadow-inner">
-              <Cube size={20} weight="duotone" />
-            </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="font-mono text-sm font-bold tracking-tight text-zinc-100">
-                  Byte-Kit
-                </span>
-                <span className="rounded bg-teal-500/10 px-1.5 py-0.5 font-mono text-[10px] font-semibold text-teal-400">
-                  v2.4
-                </span>
-              </div>
-              <span className="text-[11px] text-zinc-500 font-mono">
-                Browser Sandbox Core
-              </span>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3 font-mono text-xs text-zinc-400">
+          <div className="flex items-center gap-2">
             <ThemeToggle />
-            <div className="hidden sm:flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900/60 px-3 py-1">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              <span>100% In-Memory Runtime</span>
-            </div>
             <button
               type="button"
               onClick={() => setMobileMenuOpen(true)}
               aria-label="Open navigation menu"
               aria-expanded={mobileMenuOpen}
-              className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-900/70 text-zinc-400 transition-colors hover:border-teal-500/40 hover:text-teal-300 sm:hidden"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-zinc-400 transition-colors hover:bg-zinc-800/60 hover:text-zinc-100 sm:hidden"
             >
               <List size={19} />
             </button>
@@ -163,16 +213,16 @@ export function ToolboxHome() {
             type="button"
             aria-label="Close navigation menu"
             onClick={() => setMobileMenuOpen(false)}
-            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/60"
           />
-          <nav className="absolute right-0 top-0 flex h-full w-[min(88vw,360px)] flex-col border-l border-zinc-800 bg-[#111215] p-6 shadow-2xl">
-            <div className="flex items-center justify-between border-b border-zinc-800 pb-5">
-              <span className="font-mono text-xs font-semibold uppercase tracking-wider text-zinc-300">Navigation</span>
+          <nav className="absolute right-0 top-0 flex h-full w-[min(88vw,340px)] flex-col border-l border-zinc-800 bg-[#101012] p-6">
+            <div className="flex items-center justify-between border-b border-zinc-800 pb-4">
+              <span className="text-sm font-semibold text-zinc-200">Browse</span>
               <button type="button" onClick={() => setMobileMenuOpen(false)} aria-label="Close navigation menu" className="rounded-lg p-2 text-zinc-500 hover:bg-zinc-800 hover:text-zinc-200">
-                <X size={19} />
+                <X size={18} />
               </button>
             </div>
-            <div className="mt-6 space-y-2">
+            <div className="mt-4 space-y-1">
               <button
                 type="button"
                 onClick={() => {
@@ -180,11 +230,10 @@ export function ToolboxHome() {
                   setMobileMenuOpen(false);
                   window.scrollTo({ top: 0, behavior: "smooth" });
                 }}
-                className="w-full rounded-xl px-3 py-3 text-left font-mono text-sm text-zinc-200 transition-colors hover:bg-zinc-800"
+                className="w-full rounded-lg px-3 py-2.5 text-left text-sm text-zinc-200 transition-colors hover:bg-zinc-800/60"
               >
                 All tools
               </button>
-              <p className="px-3 pb-1 pt-5 font-mono text-[10px] uppercase tracking-widest text-zinc-600">Categories</p>
               {categories.filter((category) => category !== "All").map((category) => (
                 <button
                   type="button"
@@ -194,7 +243,7 @@ export function ToolboxHome() {
                     setMobileMenuOpen(false);
                     document.getElementById("tool-index")?.scrollIntoView({ behavior: "smooth" });
                   }}
-                  className={`w-full rounded-xl px-3 py-3 text-left font-mono text-sm transition-colors hover:bg-zinc-800 ${activeCategory === category ? "bg-teal-500/10 text-teal-300" : "text-zinc-400"}`}
+                  className={`w-full rounded-lg px-3 py-2.5 text-left text-sm transition-colors hover:bg-zinc-800/60 ${activeCategory === category ? "bg-zinc-800 text-zinc-100" : "text-zinc-400"}`}
                 >
                   {category}
                 </button>
@@ -204,186 +253,153 @@ export function ToolboxHome() {
         </div>
       )}
 
-      {/* Hero section */}
-      <section className="relative mx-auto max-w-7xl px-6 pt-16 pb-12 sm:pt-24 sm:pb-20">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          <div className="lg:col-span-7 space-y-6">
-            <div className="inline-flex items-center gap-2 rounded-full border border-teal-500/30 bg-teal-500/10 px-3 py-1 text-xs font-mono text-teal-300">
-              <Cpu size={14} />
-              <span>Free online developer tools · no uploads</span>
+      <main className="mx-auto max-w-6xl px-6">
+        <section className="pb-14 pt-16 sm:pb-20 sm:pt-24">
+          <h1 className="max-w-2xl text-4xl font-semibold tracking-tight text-zinc-100 sm:text-5xl">
+            Simple tools for developers.
+          </h1>
+          <p className="mt-4 max-w-xl text-base leading-relaxed text-zinc-400 sm:text-lg">
+            Format, convert, encode, and generate — everything runs locally in
+            your browser. No sign-up, no uploads, no tracking.
+          </p>
+
+          <div className="relative mt-8 max-w-xl">
+            <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-zinc-500">
+              <MagnifyingGlass size={17} />
             </div>
-
-            <h1 className="text-4xl sm:text-6xl font-black tracking-tight leading-[1.05] text-zinc-100">
-              Free developer tools for everyday engineering work.
-            </h1>
-
-            <p className="text-base sm:text-lg text-zinc-400 max-w-xl font-normal leading-relaxed">
-              Format JSON, convert CSS units, decode JWTs, encode Base64, test regex, and transform text with fast browser-based utilities.
-            </p>
-
-            <div className="pt-2">
-              <div className="relative max-w-xl">
-                <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-zinc-500">
-                  <MagnifyingGlass size={18} />
-                </div>
-                <input
-                  id="runtime-search"
-                  type="text"
-                  value={query}
-                  onChange={(e) => setQuery(e.target.value)}
-                  placeholder="Filter by function, encoding, or format (e.g. JSON, JWT, REM)..."
-                  aria-label="Search developer tools"
-                  autoComplete="off"
-                  className="w-full rounded-2xl border border-zinc-800 bg-[#121316] py-3.5 pl-11 pr-24 font-mono text-xs sm:text-sm text-zinc-100 placeholder:text-zinc-600 focus:border-teal-500/50 focus:ring-1 focus:ring-teal-500/30 outline-none transition-all shadow-xl"
-                />
-                <div className="absolute inset-y-0 right-3 flex items-center gap-2">
-                  {query && (
-                    <button
-                      type="button"
-                      onClick={() => setQuery("")}
-                      aria-label="Clear search"
-                      className="rounded-md p-1 text-zinc-500 transition-colors hover:bg-zinc-800 hover:text-zinc-200"
-                    >
-                      <X size={14} />
-                    </button>
-                  )}
-                  <kbd className="hidden sm:inline-flex items-center gap-1 rounded border border-zinc-700 bg-zinc-800 px-2 py-0.5 font-mono text-[10px] text-zinc-400">
-                    <Command size={10} /> K
-                  </kbd>
-                </div>
-                {query.trim() && (
-                  <div className="absolute left-0 right-0 top-[calc(100%+0.5rem)] z-20 overflow-hidden rounded-2xl border border-zinc-800 bg-[#111215] p-2 shadow-2xl">
-                    {searchSuggestions.length > 0 ? (
-                      <div className="space-y-1">
-                        {searchSuggestions.map((tool) => (
-                          <Link
-                            key={tool.slug}
-                            href={`/tools/${tool.slug}`}
-                            className="flex items-center justify-between rounded-xl px-3 py-2.5 transition-colors hover:bg-zinc-800"
-                          >
-                            <span>
-                              <span className="block text-sm font-semibold text-zinc-100">{tool.title}</span>
-                              <span className="block font-mono text-[11px] text-zinc-500">{tool.category}</span>
-                            </span>
-                            <ArrowUpRight size={16} className="text-zinc-600" />
-                          </Link>
-                        ))}
-                      </div>
-                    ) : (
-                      <p className="px-3 py-4 text-center font-mono text-xs text-zinc-500">
-                        No tools match “{query}”
-                      </p>
-                    )}
+            <input
+              id="tool-search"
+              type="text"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Search tools…"
+              aria-label="Search tools"
+              autoComplete="off"
+              className="w-full rounded-xl border border-zinc-800 bg-[#101012] py-3 pl-11 pr-20 text-sm text-zinc-100 outline-none transition-colors placeholder:text-zinc-600 focus:border-zinc-600"
+            />
+            <div className="absolute inset-y-0 right-3 flex items-center gap-2">
+              {query && (
+                <button
+                  type="button"
+                  onClick={() => setQuery("")}
+                  aria-label="Clear search"
+                  className="rounded-md p-1 text-zinc-500 transition-colors hover:bg-zinc-800 hover:text-zinc-200"
+                >
+                  <X size={14} />
+                </button>
+              )}
+              <kbd className="hidden items-center gap-1 rounded-md border border-zinc-800 bg-zinc-900 px-1.5 py-0.5 font-mono text-[11px] text-zinc-500 sm:inline-flex">
+                <Command size={11} />K
+              </kbd>
+            </div>
+            {query.trim() && (
+              <div className="absolute left-0 right-0 top-[calc(100%+0.5rem)] z-20 overflow-hidden rounded-xl border border-zinc-800 bg-[#101012] p-1.5 shadow-xl">
+                {searchSuggestions.length > 0 ? (
+                  <div className="space-y-0.5">
+                    {searchSuggestions.map((tool) => (
+                      <Link
+                        key={tool.slug}
+                        href={`/tools/${tool.slug}`}
+                        className="flex items-center justify-between rounded-lg px-3 py-2 transition-colors hover:bg-zinc-800/60"
+                      >
+                        <span>
+                          <span className="block text-sm font-medium text-zinc-100">{tool.title}</span>
+                          <span className="block text-xs text-zinc-500">{tool.category}</span>
+                        </span>
+                        <ArrowUpRight size={15} className="text-zinc-600" />
+                      </Link>
+                    ))}
                   </div>
+                ) : (
+                  <p className="px-3 py-4 text-center text-sm text-zinc-500">
+                    No tools match “{query}”
+                  </p>
                 )}
               </div>
-            </div>
+            )}
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Category Pills & Workbench Index */}
-      <section id="tool-index" className="mx-auto max-w-7xl px-6 pb-24">
-        {/* Category Filters */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-4 scrollbar-none border-b border-zinc-800/80 mb-8">
-          {categories.map((cat) => {
-            const isActive = activeCategory === cat;
-            return (
-              <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                className={`whitespace-nowrap rounded-xl px-3.5 py-1.5 font-mono text-xs transition-all active:scale-[0.98] ${
-                  isActive
-                    ? "bg-teal-500/20 text-teal-300 border border-teal-500/40 shadow-sm"
-                    : "border border-zinc-800 bg-[#121316] text-zinc-400 hover:-translate-y-0.5 hover:border-teal-500/40 hover:bg-teal-500/5 hover:text-zinc-200 hover:shadow-md"
-                }`}
-              >
-                {cat}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Header row */}
-        <div className="flex items-center justify-between mb-6 font-mono text-xs">
-          <div className="flex items-center gap-2">
-            <span className="text-zinc-400">INDEX REGISTRY</span>
-            <span className="text-zinc-600">/</span>
-            <span className="text-teal-400 font-semibold">{filteredTools.length} utilities active</span>
-          </div>
-        </div>
-
-        {/* Asymmetric Bento / Tool Grid */}
-        {filteredTools.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {filteredTools.map((tool, index) => {
-              const IconComp = getToolIcon(tool.iconName);
+        <section id="tool-index" className="pb-24">
+          <div className="mb-6 flex items-center gap-1.5 overflow-x-auto">
+            {categories.map((cat) => {
+              const isActive = activeCategory === cat;
               return (
-                <Link
-                  key={tool.slug}
-                  href={`/tools/${tool.slug}`}
-                  style={{ animationDelay: `${Math.min(index * 45, 450)}ms` }}
-                  className="tool-card-enter group relative flex flex-col justify-between rounded-2xl border border-zinc-800/80 bg-[#121316] p-5 transition-all duration-200 hover:-translate-y-1 hover:border-teal-500/50 hover:bg-[#16171b] hover:shadow-[0_18px_38px_rgba(20,184,166,0.1)]"
+                <button
+                  key={cat}
+                  onClick={() => setActiveCategory(cat)}
+                  className={`whitespace-nowrap rounded-lg px-3 py-1.5 text-sm transition-colors ${
+                    isActive
+                      ? "bg-zinc-100 font-medium text-zinc-900"
+                      : "text-zinc-500 hover:bg-zinc-800/50 hover:text-zinc-200"
+                  }`}
                 >
-                  <div>
-                    <div className="flex items-start justify-between">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-zinc-700/60 bg-zinc-900 text-zinc-300 transition-colors group-hover:border-teal-500/40 group-hover:text-teal-400">
-                        <IconComp size={20} weight="regular" />
-                      </div>
-                      <span className="font-mono text-[10px] text-zinc-500 transition-colors group-hover:text-teal-400 flex items-center gap-0.5">
-                        <ArrowUpRight size={14} />
-                      </span>
-                    </div>
-
-                    <div className="mt-4">
-                      <h3 className="text-base font-bold text-zinc-100 group-hover:text-teal-300 transition-colors">
-                        {tool.title}
-                      </h3>
-                      <p className="mt-1.5 text-xs text-zinc-400 line-clamp-2 leading-relaxed">
-                        {tool.description}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="mt-5 flex items-center justify-between pt-3 border-t border-zinc-800/60 font-mono text-[11px]">
-                    <span className="text-zinc-500 group-hover:text-zinc-400">
-                      {tool.category}
-                    </span>
-                    <span className="text-[10px] text-zinc-600 group-hover:text-teal-400/80">
-                      wasm-ready
-                    </span>
-                  </div>
-                </Link>
+                  {cat}
+                </button>
               );
             })}
           </div>
-        ) : (
-          <div className="rounded-2xl border border-dashed border-zinc-800 bg-[#121316] p-12 text-center">
-            <MagnifyingGlass size={32} className="mx-auto text-zinc-600 mb-3" />
-            <p className="font-mono text-sm text-zinc-400">No tools matched your search query.</p>
-            <button
-              onClick={() => {
-                setQuery("");
-                setActiveCategory("All");
-              }}
-              className="mt-3 font-mono text-xs text-teal-400 hover:underline"
-            >
-              Reset all filters
-            </button>
-          </div>
-        )}
-      </section>
 
-      {/* Minimalist Tactile Footer */}
-      <footer className="border-t border-zinc-800/80 bg-[#090a0b] py-8 text-xs font-mono text-zinc-500">
-        <div className="mx-auto flex max-w-7xl flex-col sm:flex-row items-center justify-between gap-4 px-6">
-          <div className="flex items-center gap-2">
-            <Cube size={14} className="text-teal-400" />
-            <span className="text-zinc-400">Byte-Kit Engineering</span>
-            <span className="text-zinc-600">·</span>
-            <span>Local Browser Primitives</span>
+          {filteredTools.length > 0 ? (
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {filteredTools.map((tool) => {
+                const IconComp = getToolIcon(tool.iconName);
+                return (
+                  <Link
+                    key={tool.slug}
+                    href={`/tools/${tool.slug}`}
+                    className="group rounded-xl border border-zinc-800/80 bg-[#101012] p-5 transition-colors hover:border-zinc-600"
+                  >
+                    <div className="flex items-center justify-between">
+                      <IconComp size={20} className="text-zinc-500 transition-colors group-hover:text-zinc-200" weight="regular" />
+                      <ArrowUpRight
+                        size={16}
+                        className="text-zinc-700 transition-all group-hover:translate-x-0.5 group-hover:text-zinc-400"
+                      />
+                    </div>
+                    <h2 className="mt-4 text-[15px] font-semibold tracking-tight text-zinc-100">
+                      {tool.title}
+                    </h2>
+                    <p className="mt-1 line-clamp-2 text-sm leading-relaxed text-zinc-500">
+                      {tool.description}
+                    </p>
+                  </Link>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="rounded-xl border border-dashed border-zinc-800 p-12 text-center">
+              <p className="text-sm text-zinc-400">No tools match your search.</p>
+              <button
+                onClick={() => {
+                  setQuery("");
+                  setActiveCategory("All");
+                }}
+                className="mt-3 text-sm text-blue-400 hover:underline"
+              >
+                Reset filters
+              </button>
+            </div>
+          )}
+        </section>
+
+        <FaqSection />
+      </main>
+
+      <footer className="border-t border-zinc-800/70">
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-6 py-6 text-sm text-zinc-500 sm:flex-row">
+          <span>© 2026 Byte-Kit</span>
+          <div className="flex items-center gap-5">
+            <Link href="/privacy" className="transition-colors hover:text-zinc-200">
+              Privacy
+            </Link>
+            <Link href="/terms" className="transition-colors hover:text-zinc-200">
+              Terms
+            </Link>
+            <Link href="/cookie-policy" className="transition-colors hover:text-zinc-200">
+              Cookies
+            </Link>
           </div>
-          <div>No third-party CDN scripts · Offline execution verified</div>
         </div>
       </footer>
     </div>

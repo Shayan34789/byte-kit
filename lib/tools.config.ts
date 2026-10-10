@@ -9,7 +9,8 @@ export type ToolCategory =
   | "Debugging"
   | "Generator"
   | "AI"
-  | "Image";
+  | "Image"
+  | "Video";
 
 export type ToolDefinition = {
   slug: string;
@@ -18,6 +19,7 @@ export type ToolDefinition = {
   category: ToolCategory;
   iconName: string;
   implemented?: boolean;
+  usage?: string[];
 };
 
 export const categories = [
@@ -32,6 +34,7 @@ export const categories = [
   "Text",
   "Color",
   "Image",
+  "Video",
   "Debugging",
 ] as const;
 
@@ -43,6 +46,12 @@ export const tools: ToolDefinition[] = [
     category: "Formatter",
     iconName: "BracketsCurly",
     implemented: true,
+    usage: [
+      "Paste your JSON into the left input panel.",
+      "The tool validates it instantly — a green badge means valid, red means malformed.",
+      "Click Beautify for readable 2-space formatting, or Minify for compact output.",
+      "Use the copy button to grab the result.",
+    ],
   },
   {
     slug: "px-to-rem",
@@ -51,6 +60,12 @@ export const tools: ToolDefinition[] = [
     category: "CSS",
     iconName: "TextT",
     implemented: true,
+    usage: [
+      "Enter a pixel value in the Source Pixels field.",
+      "Adjust the root base size if your project doesn't use the 16px default.",
+      "Read the converted rem value in the result panel.",
+      "Copy it straight into your CSS.",
+    ],
   },
   {
     slug: "json-yaml-csv",
@@ -59,6 +74,11 @@ export const tools: ToolDefinition[] = [
     category: "Converter",
     iconName: "FileJs",
     implemented: true,
+    usage: [
+      "Paste a JSON array or object into the input panel.",
+      "Choose Emit YAML or Emit CSV.",
+      "Copy the converted output — note CSV needs an array of objects.",
+    ],
   },
   {
     slug: "glassmorphism-generator",
@@ -67,6 +87,12 @@ export const tools: ToolDefinition[] = [
     category: "CSS",
     iconName: "Drop",
     implemented: true,
+    usage: [
+      "Drag the Blur Radius and Alpha Opacity sliders.",
+      "Pick a surface tint with the color picker.",
+      "Preview the frosted-glass effect live on the sample surface.",
+      "Copy the generated CSS ruleset.",
+    ],
   },
   {
     slug: "box-shadow-generator",
@@ -75,6 +101,11 @@ export const tools: ToolDefinition[] = [
     category: "CSS",
     iconName: "StackSimple",
     implemented: true,
+    usage: [
+      "Drag the Blur Radius and Alpha Opacity sliders.",
+      "Preview the shadow live on the sample surface.",
+      "Copy the generated box-shadow CSS into your stylesheet.",
+    ],
   },
   {
     slug: "llm-token-counter",
@@ -83,6 +114,11 @@ export const tools: ToolDefinition[] = [
     category: "AI",
     iconName: "BracketsAngle",
     implemented: true,
+    usage: [
+      "Paste your prompt or text into the input area.",
+      "Read the estimated token count, character count, word count, and byte size.",
+      "The token estimate uses a ~3.8 characters-per-token ratio.",
+    ],
   },
   {
     slug: "invisible-character-cleaner",
@@ -91,6 +127,12 @@ export const tools: ToolDefinition[] = [
     category: "AI",
     iconName: "MagnifyingGlass",
     implemented: true,
+    usage: [
+      "Paste text that may contain hidden or zero-width characters.",
+      "Invisible characters are stripped automatically as you type.",
+      "The badge shows how many characters were removed.",
+      "Copy the cleaned output.",
+    ],
   },
   {
     slug: "jwt-decoder",
@@ -99,6 +141,11 @@ export const tools: ToolDefinition[] = [
     category: "Security",
     iconName: "Key",
     implemented: true,
+    usage: [
+      "Paste a JWT — three Base64 segments separated by dots.",
+      "The header and payload claims decode instantly in the panels below.",
+      "Everything stays in your browser; tokens are never sent anywhere.",
+    ],
   },
   {
     slug: "password-uuid-generator",
@@ -107,6 +154,12 @@ export const tools: ToolDefinition[] = [
     category: "Generator",
     iconName: "LockSimple",
     implemented: true,
+    usage: [
+      "Set the password length you want (8–128 characters).",
+      "Click Sample Entropy Key to generate a cryptographically random password.",
+      "Click Generate UUID for a random UUID v4.",
+      "Use the copy buttons to grab either value.",
+    ],
   },
   {
     slug: "image-svg-converter",
@@ -115,6 +168,12 @@ export const tools: ToolDefinition[] = [
     category: "Image",
     iconName: "Image",
     implemented: true,
+    usage: [
+      "Drop a PNG, JPG, WebP, or SVG file onto the upload area — or click Browse files.",
+      "Pick a target format: PNG, JPEG, or WebP.",
+      "Adjust the quality slider for JPEG or WebP output.",
+      "Click Convert, preview the result, then download it.",
+    ],
   },
   {
     slug: "url-base64",
@@ -123,6 +182,11 @@ export const tools: ToolDefinition[] = [
     category: "Encoding",
     iconName: "Link",
     implemented: true,
+    usage: [
+      "Paste your raw text into the input panel.",
+      "Switch between URL percent-encoding and Base64.",
+      "Copy the encoded output.",
+    ],
   },
   {
     slug: "regex-tester",
@@ -131,6 +195,11 @@ export const tools: ToolDefinition[] = [
     category: "Debugging",
     iconName: "Terminal",
     implemented: true,
+    usage: [
+      "Type your regular expression and flags (e.g. gi).",
+      "Paste the text you want to test into the corpus box.",
+      "Matches are listed instantly with a live match count.",
+    ],
   },
   {
     slug: "case-converter",
@@ -139,6 +208,11 @@ export const tools: ToolDefinition[] = [
     category: "Text",
     iconName: "TextAa",
     implemented: true,
+    usage: [
+      "Type or paste text in any casing.",
+      "All five casings — camelCase, kebab-case, snake_case, SCREAMING, and PascalCase — generate instantly.",
+      "Copy the transformed output.",
+    ],
   },
   {
     slug: "color-converter",
@@ -147,6 +221,11 @@ export const tools: ToolDefinition[] = [
     category: "Color",
     iconName: "Palette",
     implemented: true,
+    usage: [
+      "Pick a color with the swatch picker.",
+      "Read the HEX, RGB, and HSL values in the output panel.",
+      "Copy them straight into your CSS.",
+    ],
   },
   {
     slug: "html-entity-encoder",
@@ -155,6 +234,11 @@ export const tools: ToolDefinition[] = [
     category: "Encoding",
     iconName: "Code",
     implemented: true,
+    usage: [
+      "Paste HTML or text containing special characters.",
+      "Characters like <, >, &, and quotes are escaped automatically.",
+      "Copy the safe escaped markup.",
+    ],
   },
   {
     slug: "prompt-template-generator",
@@ -163,6 +247,234 @@ export const tools: ToolDefinition[] = [
     category: "AI",
     iconName: "Sparkle",
     implemented: true,
+    usage: [
+      "Enter an agent role, the task, and your constraints.",
+      "The structured prompt assembles live in the preview below.",
+      "Copy it into your AI workflow.",
+    ],
+  },
+  {
+    slug: "batch-image-converter",
+    title: "Batch Image Converter",
+    description: "Convert many images at once to PNG, JPG, or WebP and download them as a ZIP.",
+    category: "Image",
+    iconName: "Images",
+    implemented: true,
+    usage: [
+      "Drop multiple images onto the upload area.",
+      "Pick a target format and quality.",
+      "Click Convert to process every file.",
+      "Download all converted images as a single ZIP.",
+    ],
+  },
+  {
+    slug: "image-compressor",
+    title: "Image Compressor",
+    description: "Shrink image file sizes with quality and resize controls, right in your browser.",
+    category: "Image",
+    iconName: "FileImage",
+    implemented: true,
+    usage: [
+      "Drop an image onto the upload area.",
+      "Choose an output format, quality, and max dimension.",
+      "Click Compress and compare before/after file sizes.",
+      "Download the compressed image.",
+    ],
+  },
+  {
+    slug: "heic-converter",
+    title: "HEIC Converter",
+    description: "Convert iPhone HEIC/HEIF photos to JPG, PNG, or WebP locally.",
+    category: "Image",
+    iconName: "FileImage",
+    implemented: true,
+    usage: [
+      "Drop a .heic or .heif photo onto the upload area.",
+      "Pick a target format and quality.",
+      "Click Convert — decoding can take a few seconds for large photos.",
+      "Download the converted image.",
+    ],
+  },
+  {
+    slug: "avif-converter",
+    title: "AVIF Converter",
+    description: "Convert images to and from the modern AVIF format in your browser.",
+    category: "Image",
+    iconName: "Image",
+    implemented: true,
+    usage: [
+      "Drop a PNG, JPG, WebP, or AVIF image onto the upload area.",
+      "Pick AVIF or a classic format as the target.",
+      "Adjust quality, then click Convert.",
+      "Download the result.",
+    ],
+  },
+  {
+    slug: "image-to-base64",
+    title: "Image to Base64",
+    description: "Encode any image as a Base64 data URI for embedding in CSS or HTML.",
+    category: "Encoding",
+    iconName: "Code",
+    implemented: true,
+    usage: [
+      "Drop an image onto the upload area.",
+      "The Base64 data URI is generated instantly.",
+      "Copy the full string or download it as a .txt file.",
+    ],
+  },
+  {
+    slug: "exif-remover",
+    title: "EXIF Remover",
+    description: "Strip hidden location and device metadata from photos before sharing.",
+    category: "Security",
+    iconName: "ShieldCheck",
+    implemented: true,
+    usage: [
+      "Drop a photo onto the upload area.",
+      "Choose JPG or PNG output.",
+      "Click Strip metadata to re-encode the image without EXIF data.",
+      "Download the clean image.",
+    ],
+  },
+  {
+    slug: "svg-optimizer",
+    title: "SVG Optimizer",
+    description: "Minify SVG markup by removing comments, whitespace, and editor cruft.",
+    category: "Image",
+    iconName: "Code",
+    implemented: true,
+    usage: [
+      "Paste SVG markup or load an .svg file.",
+      "Click Optimize to minify it.",
+      "See exactly how many bytes were saved.",
+      "Copy or download the optimized SVG.",
+    ],
+  },
+  {
+    slug: "favicon-generator",
+    title: "Favicon Generator",
+    description: "Turn one image into a multi-size favicon.ico plus PNG icons.",
+    category: "Generator",
+    iconName: "Star",
+    implemented: true,
+    usage: [
+      "Drop a square logo or image onto the upload area.",
+      "Click Generate favicon.",
+      "Preview the 16, 32, and 48px icons.",
+      "Download favicon.ico or the individual PNGs.",
+    ],
+  },
+  {
+    slug: "mov-to-mp4",
+    title: "MOV to MP4 Converter",
+    description: "Convert QuickTime MOV videos to MP4, with lossless remux when possible.",
+    category: "Video",
+    iconName: "FilmStrip",
+    implemented: true,
+    usage: [
+      "Drop a MOV file onto the upload area.",
+      "Choose Auto to remux losslessly when the codecs allow it.",
+      "Click Convert and wait for the engine to finish.",
+      "Download the MP4 file.",
+    ],
+  },
+  {
+    slug: "mkv-to-mp4",
+    title: "MKV to MP4 Converter",
+    description: "Convert MKV to MP4, remuxed losslessly when codecs allow.",
+    category: "Video",
+    iconName: "FilmSlate",
+    implemented: true,
+    usage: [
+      "Drop an MKV file onto the upload area.",
+      "Choose Auto to copy streams untouched when compatible.",
+      "Click Convert and wait for the engine to finish.",
+      "Download the MP4 file.",
+    ],
+  },
+  {
+    slug: "webm-to-mp4",
+    title: "WebM to MP4 Converter",
+    description: "Convert WebM (VP8/VP9) to universally playable H.264 MP4.",
+    category: "Video",
+    iconName: "MonitorPlay",
+    implemented: true,
+    usage: [
+      "Drop a WebM file onto the upload area.",
+      "Pick a quality level.",
+      "Click Convert and wait for the engine to finish.",
+      "Download the MP4 file.",
+    ],
+  },
+  {
+    slug: "mp4-to-webm",
+    title: "MP4 to WebM Converter",
+    description: "Convert MP4 to WebM (VP8 + Opus) for smaller web-ready video.",
+    category: "Video",
+    iconName: "VideoCamera",
+    implemented: true,
+    usage: [
+      "Drop an MP4 file onto the upload area.",
+      "Pick a quality level.",
+      "Click Convert and download the WebM file.",
+      "Download the WebM file.",
+    ],
+  },
+  {
+    slug: "video-to-gif",
+    title: "Video to GIF Converter",
+    description: "Turn any video into an animated GIF, with fps, width and loop controls.",
+    category: "Video",
+    iconName: "Play",
+    implemented: true,
+    usage: [
+      "Drop a video file onto the upload area.",
+      "Set frames per second and output width.",
+      "Click Convert to render the GIF with a two-pass palette.",
+      "Download the GIF file.",
+    ],
+  },
+  {
+    slug: "gif-to-mp4",
+    title: "GIF to MP4 Converter",
+    description: "Convert animated GIFs to compact, silent H.264 MP4 video.",
+    category: "Video",
+    iconName: "FastForward",
+    implemented: true,
+    usage: [
+      "Drop a GIF file onto the upload area.",
+      "Optionally cap the output width.",
+      "Click Convert.",
+      "Download the MP4 file.",
+    ],
+  },
+  {
+    slug: "video-compressor",
+    title: "Video Compressor",
+    description: "Shrink video file size by bitrate and resolution, privately in your browser.",
+    category: "Video",
+    iconName: "ArrowDown",
+    implemented: true,
+    usage: [
+      "Drop a video file onto the upload area.",
+      "Choose a target resolution and quality level.",
+      "Click Convert — output is always MP4.",
+      "Compare sizes and download the compressed video.",
+    ],
+  },
+  {
+    slug: "video-trimmer",
+    title: "Video Trimmer",
+    description: "Cut a time range from any video: lossless by default, precise mode optional.",
+    category: "Video",
+    iconName: "Scissors",
+    implemented: true,
+    usage: [
+      "Drop a video file onto the upload area.",
+      "Enter start and end times (seconds or mm:ss).",
+      "Pick Lossless for speed or Precise for frame accuracy.",
+      "Click Convert and download the trimmed video.",
+    ],
   },
 ];
 

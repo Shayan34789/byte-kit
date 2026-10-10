@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import dynamic from "next/dynamic";
 import { CopyButton } from "./copy-button";
 import {
   FileCode,
@@ -12,6 +13,51 @@ import {
   Palette,
   Sparkle,
 } from "@phosphor-icons/react";
+
+function ToolLoading() {
+  return (
+    <div className="flex min-h-[240px] items-center justify-center rounded-xl border border-zinc-800 bg-[#121316]">
+      <span className="font-mono text-xs text-zinc-500">Loading module…</span>
+    </div>
+  );
+}
+
+const BatchConverter = dynamic(
+  () => import("./tools/batch-converter").then((m) => m.BatchConverter),
+  { ssr: false, loading: () => <ToolLoading /> }
+);
+const ImageCompressor = dynamic(
+  () => import("./tools/image-compressor").then((m) => m.ImageCompressor),
+  { ssr: false, loading: () => <ToolLoading /> }
+);
+const HeicConverter = dynamic(
+  () => import("./tools/heic-converter").then((m) => m.HeicConverter),
+  { ssr: false, loading: () => <ToolLoading /> }
+);
+const AvifConverter = dynamic(
+  () => import("./tools/avif-converter").then((m) => m.AvifConverter),
+  { ssr: false, loading: () => <ToolLoading /> }
+);
+const ImageBase64 = dynamic(
+  () => import("./tools/image-base64").then((m) => m.ImageBase64),
+  { ssr: false, loading: () => <ToolLoading /> }
+);
+const ExifRemover = dynamic(
+  () => import("./tools/exif-remover").then((m) => m.ExifRemover),
+  { ssr: false, loading: () => <ToolLoading /> }
+);
+const SvgOptimizer = dynamic(
+  () => import("./tools/svg-optimizer").then((m) => m.SvgOptimizer),
+  { ssr: false, loading: () => <ToolLoading /> }
+);
+const FaviconGenerator = dynamic(
+  () => import("./tools/favicon-generator").then((m) => m.FaviconGenerator),
+  { ssr: false, loading: () => <ToolLoading /> }
+);
+const VideoTool = dynamic(
+  () => import("./tools/video/VideoTool").then((m) => m.VideoTool),
+  { ssr: false, loading: () => <ToolLoading /> }
+);
 
 type Props = { slug: string };
 
@@ -33,7 +79,7 @@ function CodeEditor({
       readOnly={readOnly}
       spellCheck={false}
       placeholder={placeholder}
-      className="min-h-[260px] w-full resize-y rounded-xl border border-zinc-800 bg-[#121316] p-4 font-mono text-xs leading-relaxed text-zinc-200 outline-none placeholder:text-zinc-600 focus:border-teal-500/50 focus:ring-1 focus:ring-teal-500/20"
+      className="min-h-[260px] w-full resize-y rounded-xl border border-zinc-800 bg-[#121316] p-4 font-mono text-xs leading-relaxed text-zinc-200 outline-none placeholder:text-zinc-600 focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/20"
     />
   );
 }
@@ -74,7 +120,7 @@ function TwoPaneLayout({
               {outputTitle}
             </label>
             {badge && (
-              <span className="rounded bg-teal-500/10 px-1.5 py-0.5 font-mono text-[10px] text-teal-400">
+              <span className="rounded bg-blue-500/10 px-1.5 py-0.5 font-mono text-[10px] text-blue-400">
                 {badge}
               </span>
             )}
@@ -149,7 +195,7 @@ function JsonYamlCsv() {
             onClick={() => setFormat(fmt)}
             className={`rounded-lg px-3 py-1.5 font-mono text-xs font-medium transition-all ${
               format === fmt
-                ? "bg-teal-500/20 text-teal-300 border border-teal-500/40"
+                ? "bg-blue-500/20 text-blue-300 border border-blue-500/40"
                 : "bg-zinc-800/60 text-zinc-400 hover:text-zinc-200 border border-zinc-800"
             }`}
           >
@@ -187,7 +233,7 @@ function CssGenerator({ shadow = false }: { shadow?: boolean }) {
         <div>
           <div className="flex justify-between font-mono text-xs text-zinc-300">
             <span>Blur Radius</span>
-            <span className="text-teal-400">{blur}px</span>
+            <span className="text-blue-400">{blur}px</span>
           </div>
           <input
             type="range"
@@ -195,14 +241,14 @@ function CssGenerator({ shadow = false }: { shadow?: boolean }) {
             max="64"
             value={blur}
             onChange={(e) => setBlur(e.target.value)}
-            className="mt-2 w-full accent-teal-400"
+            className="mt-2 w-full accent-blue-400"
           />
         </div>
 
         <div>
           <div className="flex justify-between font-mono text-xs text-zinc-300">
             <span>Alpha Opacity</span>
-            <span className="text-teal-400">{opacity}</span>
+            <span className="text-blue-400">{opacity}</span>
           </div>
           <input
             type="range"
@@ -211,7 +257,7 @@ function CssGenerator({ shadow = false }: { shadow?: boolean }) {
             step="0.05"
             value={opacity}
             onChange={(e) => setOpacity(e.target.value)}
-            className="mt-2 w-full accent-teal-400"
+            className="mt-2 w-full accent-blue-400"
           />
         </div>
 
@@ -252,7 +298,7 @@ function CssGenerator({ shadow = false }: { shadow?: boolean }) {
             <span className="font-mono text-xs text-zinc-400">Generated Ruleset</span>
             <CopyButton value={css} />
           </div>
-          <pre className="rounded-xl border border-zinc-800 bg-[#121316] p-4 font-mono text-xs leading-relaxed text-teal-300">
+          <pre className="rounded-xl border border-zinc-800 bg-[#121316] p-4 font-mono text-xs leading-relaxed text-blue-300">
             {css}
           </pre>
         </div>
@@ -351,7 +397,7 @@ function JwtDecoder() {
             <span className="font-mono text-xs uppercase tracking-wider text-zinc-400">
               Header Claims
             </span>
-            <span className="font-mono text-[10px] text-teal-400">ALGORITHM / TYP</span>
+            <span className="font-mono text-[10px] text-blue-400">ALGORITHM / TYP</span>
           </div>
           <pre className="min-h-[180px] overflow-auto rounded-xl border border-zinc-800 bg-[#121316] p-4 font-mono text-xs text-zinc-300">
             {token ? decodePart(parts[0] || "") : "// Waiting for JWT string..."}
@@ -363,7 +409,7 @@ function JwtDecoder() {
             <span className="font-mono text-xs uppercase tracking-wider text-zinc-400">
               Payload Claims
             </span>
-            <span className="font-mono text-[10px] text-teal-400">DATA PAYLOAD</span>
+            <span className="font-mono text-[10px] text-blue-400">DATA PAYLOAD</span>
           </div>
           <pre className="min-h-[180px] overflow-auto rounded-xl border border-zinc-800 bg-[#121316] p-4 font-mono text-xs text-zinc-300">
             {token ? decodePart(parts[1] || "") : "// Waiting for JWT string..."}
@@ -407,7 +453,7 @@ function PasswordUuid() {
           </div>
           <button
             onClick={genPass}
-            className="rounded-lg bg-teal-500/20 border border-teal-500/40 px-3.5 py-1.5 font-mono text-xs font-semibold text-teal-300 hover:bg-teal-500/30 active:scale-[0.98] transition-all"
+            className="rounded-lg bg-blue-500/20 border border-blue-500/40 px-3.5 py-1.5 font-mono text-xs font-semibold text-blue-300 hover:bg-blue-500/30 active:scale-[0.98] transition-all"
           >
             Sample Entropy Key
           </button>
@@ -418,7 +464,7 @@ function PasswordUuid() {
             readOnly
             value={password}
             placeholder="Tap 'Sample Entropy Key' to execute CSPRNG..."
-            className="flex-1 rounded-lg border border-zinc-800 bg-zinc-900/80 px-4 py-2 font-mono text-xs text-teal-300 outline-none"
+            className="flex-1 rounded-lg border border-zinc-800 bg-zinc-900/80 px-4 py-2 font-mono text-xs text-blue-300 outline-none"
           />
           <CopyButton value={password} />
         </div>
@@ -472,7 +518,7 @@ function UrlBase64() {
             onClick={() => setMode(m)}
             className={`rounded-lg px-3 py-1.5 font-mono text-xs font-medium transition-all ${
               mode === m
-                ? "bg-teal-500/20 text-teal-300 border border-teal-500/40"
+                ? "bg-blue-500/20 text-blue-300 border border-blue-500/40"
                 : "bg-zinc-800/60 text-zinc-400 border border-zinc-800"
             }`}
           >
@@ -514,7 +560,7 @@ function RegexTester() {
           value={pattern}
           onChange={(e) => setPattern(e.target.value)}
           placeholder="Regex expression..."
-          className="flex-1 rounded-xl border border-zinc-800 bg-[#121316] px-4 py-2 font-mono text-xs text-teal-300 outline-none focus:border-teal-500/40"
+          className="flex-1 rounded-xl border border-zinc-800 bg-[#121316] px-4 py-2 font-mono text-xs text-blue-300 outline-none focus:border-blue-500/40"
         />
         <input
           value={flags}
@@ -528,13 +574,13 @@ function RegexTester() {
 
       <div className="rounded-xl border border-zinc-800 bg-[#121316] p-4 flex items-center justify-between">
         <span className="font-mono text-xs text-zinc-400">
-          Match Count: <strong className="text-teal-400">{matches.length}</strong>
+          Match Count: <strong className="text-blue-400">{matches.length}</strong>
         </span>
         <div className="flex flex-wrap gap-1.5 max-w-lg justify-end">
           {matches.slice(0, 10).map((m, i) => (
             <span
               key={i}
-              className="rounded bg-teal-500/10 px-2 py-0.5 font-mono text-[11px] text-teal-300"
+              className="rounded bg-blue-500/10 px-2 py-0.5 font-mono text-[11px] text-blue-300"
             >
               {m}
             </span>
@@ -592,7 +638,7 @@ function CaseConverter() {
 
 // 10. Color Converter
 function ColorConverter() {
-  const [color, setColor] = useState("#0d9488");
+  const [color, setColor] = useState("#2563eb");
   const hex = color.replace("#", "");
   const rgb =
     hex.length === 6
@@ -603,9 +649,22 @@ function ColorConverter() {
         ]
       : [0, 0, 0];
 
-  const output = `HEX: #${hex.toUpperCase()}\nRGB: rgb(${rgb.join(", ")})\nHSL: hsl(${Math.round(
-    174
-  )}, 84%, 32%)\nCSS: color: #${hex};`;
+  const [r, g, b] = rgb.map((v) => v / 255);
+  const max = Math.max(r, g, b);
+  const min = Math.min(r, g, b);
+  const l = (max + min) / 2;
+  let h = 0;
+  let s = 0;
+  if (max !== min) {
+    const d = max - min;
+    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+    if (max === r) h = ((g - b) / d + (g < b ? 6 : 0)) / 6;
+    else if (max === g) h = ((b - r) / d + 2) / 6;
+    else h = ((r - g) / d + 4) / 6;
+  }
+  const hsl = `hsl(${Math.round(h * 360)}, ${Math.round(s * 100)}%, ${Math.round(l * 100)}%)`;
+
+  const output = `HEX: #${hex.toUpperCase()}\nRGB: rgb(${rgb.join(", ")})\nHSL: ${hsl}\nCSS: color: #${hex};`;
 
   return (
     <div className="flex flex-col sm:flex-row items-start gap-6">
@@ -663,6 +722,222 @@ function HtmlEncoder() {
   );
 }
 
+// 13. Image & SVG Converter
+function ImageSvgConverter() {
+  const [srcUrl, setSrcUrl] = useState<string | null>(null);
+  const [fileName, setFileName] = useState("");
+  const [fileSize, setFileSize] = useState(0);
+  const [natural, setNatural] = useState({ w: 0, h: 0 });
+  const [format, setFormat] = useState<"png" | "jpeg" | "webp">("png");
+  const [quality, setQuality] = useState(0.92);
+  const [outUrl, setOutUrl] = useState<string | null>(null);
+  const [outSize, setOutSize] = useState(0);
+  const [outDims, setOutDims] = useState({ w: 0, h: 0 });
+  const [error, setError] = useState("");
+  const [dragOver, setDragOver] = useState(false);
+
+  const loadFile = (file: File | undefined) => {
+    setError("");
+    setOutUrl(null);
+    if (!file) return;
+    if (!/^image\/(png|jpe?g|webp|svg\+xml)$/.test(file.type)) {
+      setError("Unsupported file type. Use PNG, JPG, WebP, or SVG.");
+      return;
+    }
+    if (srcUrl) URL.revokeObjectURL(srcUrl);
+    const url = URL.createObjectURL(file);
+    const img = new Image();
+    img.onload = () => {
+      const w = img.naturalWidth || 1024;
+      const h = img.naturalHeight || 1024;
+      setNatural({ w, h });
+      setSrcUrl(url);
+      setFileName(file.name);
+      setFileSize(file.size);
+    };
+    img.onerror = () => {
+      URL.revokeObjectURL(url);
+      setError("Could not decode that image file.");
+    };
+    img.src = url;
+  };
+
+  const convert = () => {
+    setError("");
+    if (!srcUrl) return;
+    const img = new Image();
+    img.onload = () => {
+      const w = img.naturalWidth || natural.w || 1024;
+      const h = img.naturalHeight || natural.h || 1024;
+      const canvas = document.createElement("canvas");
+      canvas.width = w;
+      canvas.height = h;
+      const ctx = canvas.getContext("2d");
+      if (!ctx) {
+        setError("Canvas is not available in this browser.");
+        return;
+      }
+      if (format === "jpeg") {
+        ctx.fillStyle = "#ffffff";
+        ctx.fillRect(0, 0, w, h);
+      }
+      ctx.drawImage(img, 0, 0, w, h);
+      canvas.toBlob(
+        (blob) => {
+          if (!blob) {
+            setError(`This browser cannot encode ${format.toUpperCase()}.`);
+            return;
+          }
+          if (outUrl) URL.revokeObjectURL(outUrl);
+          setOutUrl(URL.createObjectURL(blob));
+          setOutSize(blob.size);
+          setOutDims({ w, h });
+        },
+        `image/${format}`,
+        quality
+      );
+    };
+    img.onerror = () => setError("Could not decode the source image for conversion.");
+    img.src = srcUrl;
+  };
+
+  const fmtSize = (bytes: number) =>
+    bytes > 1048576
+      ? `${(bytes / 1048576).toFixed(2)} MB`
+      : `${(bytes / 1024).toFixed(1)} KB`;
+
+  const outName = fileName
+    ? fileName.replace(/\.[^.]+$/, "") + `.${format === "jpeg" ? "jpg" : format}`
+    : `converted.${format === "jpeg" ? "jpg" : format}`;
+
+  return (
+    <div className="space-y-6">
+      <div
+        onDragOver={(e) => {
+          e.preventDefault();
+          setDragOver(true);
+        }}
+        onDragLeave={() => setDragOver(false)}
+        onDrop={(e) => {
+          e.preventDefault();
+          setDragOver(false);
+          loadFile(e.dataTransfer.files?.[0]);
+        }}
+        className={`flex flex-col items-center justify-center gap-3 rounded-xl border border-dashed p-8 text-center transition-colors ${
+          dragOver ? "border-blue-500/60 bg-blue-500/5" : "border-zinc-700 bg-[#121316]"
+        }`}
+      >
+        <p className="font-mono text-xs text-zinc-300">
+          Drop a PNG, JPG, WebP, or SVG file here, or
+        </p>
+        <label className="cursor-pointer rounded-lg border border-blue-500/40 bg-blue-500/20 px-4 py-2 font-mono text-xs font-semibold text-blue-300 transition-all hover:bg-blue-500/30">
+          Browse files
+          <input
+            type="file"
+            accept="image/png,image/jpeg,image/webp,image/svg+xml"
+            className="hidden"
+            onChange={(e) => loadFile(e.target.files?.[0])}
+          />
+        </label>
+        {fileName && (
+          <p className="font-mono text-[11px] text-zinc-500">
+            {fileName} · {natural.w}×{natural.h}px · {fmtSize(fileSize)}
+          </p>
+        )}
+      </div>
+
+      {error && (
+        <p className="rounded-xl border border-rose-500/30 bg-rose-500/10 px-4 py-3 font-mono text-xs text-rose-300">
+          {error}
+        </p>
+      )}
+
+      {srcUrl && (
+        <div className="grid gap-6 lg:grid-cols-2">
+          <div className="space-y-3">
+            <span className="font-mono text-xs uppercase tracking-wider text-zinc-400">
+              Source Preview
+            </span>
+            <div className="flex min-h-[220px] items-center justify-center overflow-hidden rounded-xl border border-zinc-800 bg-zinc-950 p-4">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={srcUrl} alt="Source preview" className="max-h-64 object-contain" />
+            </div>
+            <div className="flex flex-wrap items-center gap-3 rounded-xl border border-zinc-800 bg-[#121316] p-4">
+              <span className="font-mono text-xs text-zinc-400">Target format:</span>
+              {(["png", "jpeg", "webp"] as const).map((f) => (
+                <button
+                  key={f}
+                  onClick={() => setFormat(f)}
+                  className={`rounded-lg px-3 py-1.5 font-mono text-xs font-medium transition-all ${
+                    format === f
+                      ? "border border-blue-500/40 bg-blue-500/20 text-blue-300"
+                      : "border border-zinc-800 bg-zinc-800/60 text-zinc-400 hover:text-zinc-200"
+                  }`}
+                >
+                  {f.toUpperCase()}
+                </button>
+              ))}
+              {format !== "png" && (
+                <div className="flex items-center gap-2 font-mono text-xs text-zinc-400">
+                  <span>Quality</span>
+                  <input
+                    type="range"
+                    min="0.1"
+                    max="1"
+                    step="0.01"
+                    value={quality}
+                    onChange={(e) => setQuality(Number(e.target.value))}
+                    className="w-28 accent-blue-400"
+                  />
+                  <span className="text-blue-400">{Math.round(quality * 100)}%</span>
+                </div>
+              )}
+              <button
+                onClick={convert}
+                className="rounded-lg bg-blue-500/20 border border-blue-500/40 px-4 py-1.5 font-mono text-xs font-semibold text-blue-300 hover:bg-blue-500/30 active:scale-[0.98] transition-all"
+              >
+                Convert
+              </button>
+            </div>
+          </div>
+
+          <div className="space-y-3">
+            <div className="flex items-center justify-between">
+              <span className="font-mono text-xs uppercase tracking-wider text-zinc-400">
+                Converted Output
+              </span>
+              {outUrl && (
+                <a
+                  href={outUrl}
+                  download={outName}
+                  className="rounded-lg border border-blue-500/40 bg-blue-500/20 px-3.5 py-1.5 font-mono text-xs font-semibold text-blue-300 hover:bg-blue-500/30 transition-all"
+                >
+                  Download {format.toUpperCase()}
+                </a>
+              )}
+            </div>
+            <div className="flex min-h-[220px] items-center justify-center overflow-hidden rounded-xl border border-zinc-800 bg-zinc-950 p-4">
+              {outUrl ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={outUrl} alt="Converted preview" className="max-h-64 object-contain" />
+              ) : (
+                <span className="font-mono text-xs text-zinc-600">
+                  Press Convert to render output...
+                </span>
+              )}
+            </div>
+            {outUrl && (
+              <p className="font-mono text-[11px] text-zinc-500">
+                {outDims.w}×{outDims.h}px · {fmtSize(outSize)}
+              </p>
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 // 12. Prompt Template Generator
 function PromptGenerator() {
   const [role, setRole] = useState("Systems Architect");
@@ -697,7 +972,7 @@ function PromptGenerator() {
         <span className="font-mono text-xs text-zinc-400">Assembled Prompt Matrix</span>
         <CopyButton value={prompt} />
       </div>
-      <pre className="rounded-xl border border-zinc-800 bg-[#121316] p-4 font-mono text-xs leading-relaxed text-teal-300">
+      <pre className="rounded-xl border border-zinc-800 bg-[#121316] p-4 font-mono text-xs leading-relaxed text-blue-300">
         {prompt}
       </pre>
     </div>
@@ -720,6 +995,8 @@ export function ToolWorkbench({ slug }: Props) {
       return <JwtDecoder />;
     case "password-uuid-generator":
       return <PasswordUuid />;
+    case "image-svg-converter":
+      return <ImageSvgConverter />;
     case "url-base64":
       return <UrlBase64 />;
     case "regex-tester":
@@ -732,6 +1009,38 @@ export function ToolWorkbench({ slug }: Props) {
       return <HtmlEncoder />;
     case "prompt-template-generator":
       return <PromptGenerator />;
+    case "batch-image-converter":
+      return <BatchConverter />;
+    case "image-compressor":
+      return <ImageCompressor />;
+    case "heic-converter":
+      return <HeicConverter />;
+    case "avif-converter":
+      return <AvifConverter />;
+    case "image-to-base64":
+      return <ImageBase64 />;
+    case "exif-remover":
+      return <ExifRemover />;
+    case "svg-optimizer":
+      return <SvgOptimizer />;
+    case "favicon-generator":
+      return <FaviconGenerator />;
+    case "mov-to-mp4":
+      return <VideoTool key="mov-to-mp4" op="mov-to-mp4" />;
+    case "mkv-to-mp4":
+      return <VideoTool key="mkv-to-mp4" op="mkv-to-mp4" />;
+    case "webm-to-mp4":
+      return <VideoTool key="webm-to-mp4" op="webm-to-mp4" />;
+    case "mp4-to-webm":
+      return <VideoTool key="mp4-to-webm" op="mp4-to-webm" />;
+    case "video-to-gif":
+      return <VideoTool key="video-to-gif" op="video-to-gif" />;
+    case "gif-to-mp4":
+      return <VideoTool key="gif-to-mp4" op="gif-to-mp4" />;
+    case "video-compressor":
+      return <VideoTool key="video-compressor" op="video-compressor" />;
+    case "video-trimmer":
+      return <VideoTool key="video-trimmer" op="video-trimmer" />;
     default:
       return (
         <div className="rounded-xl border border-zinc-800 bg-zinc-900/40 p-8 text-center font-mono text-xs text-zinc-500">

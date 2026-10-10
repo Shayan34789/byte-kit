@@ -1,9 +1,16 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import { CookieBanner } from "@/components/cookie-banner";
 import { BackToTop } from "@/components/back-to-top";
 import { ScrollProgress } from "@/components/scroll-progress";
 import { siteUrl, StructuredData } from "@/lib/structured-data";
 import "./globals.css";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: {
@@ -45,19 +52,28 @@ export const metadata: Metadata = {
     title: "Byte-Kit — Free Private Developer Tools",
     description:
       "Free online tools for JSON, CSS, JWT, Base64, regex, color, image, and text workflows. Private browser-based processing.",
+    images: [
+      {
+        url: `${siteUrl}/og-image.png`,
+        width: 1200,
+        height: 630,
+        alt: "Byte-Kit — Free Private Developer Tools",
+      },
+    ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Byte-Kit — Free Private Developer Tools",
     description:
       "Free browser-based developer tools for formatting, encoding, decoding, conversion, and generation with no uploads.",
+    images: ["/og-image.png"],
   },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className="min-h-[100dvh] bg-canvas text-ink antialiased">
+      <body className={`${inter.variable} min-h-[100dvh] bg-canvas text-ink antialiased`}>
         <ScrollProgress />
         {children}
         <CookieBanner />

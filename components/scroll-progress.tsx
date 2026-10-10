@@ -36,7 +36,7 @@ export function ScrollProgress() {
       aria-valuenow={Math.round(progress)}
     >
       <div
-        className="h-full origin-left bg-gradient-to-r from-teal-400 via-emerald-400 to-cyan-300 shadow-[0_0_10px_rgba(45,212,191,0.65)] transition-[width] duration-100"
+        className="h-full origin-left bg-zinc-100 transition-[width] duration-100"
         style={{ width: `${progress}%` }}
       />
     </div>
