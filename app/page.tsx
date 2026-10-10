@@ -7,7 +7,7 @@ import { faqs } from "@/lib/faq";
 export const metadata: Metadata = {
   title: "Free Private Developer Tools",
   description:
-    "Use free online developer tools for JSON formatting, CSS conversion, JWT decoding, Base64 encoding, regex testing, color conversion, and more. Everything runs in your browser.",
+    "Free online developer tools for JSON, CSS, JWT, Base64, regex, color and image workflows. Private — everything runs in your browser.",
   alternates: {
     canonical: siteUrl,
   },

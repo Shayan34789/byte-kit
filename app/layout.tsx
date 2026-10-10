@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     template: "%s · Byte-Kit",
   },
   description:
-    "Free online developer tools for JSON formatting, CSS conversion, JWT decoding, Base64 encoding, regex testing, image conversion, and text utilities. Fast, private, and processed locally.",
+    "Free online developer tools for JSON, CSS, JWT, Base64, regex and image workflows. Fast, private, processed locally.",
   applicationName: "Byte-Kit",
   metadataBase: new URL(siteUrl),
   keywords: [
