@@ -14,6 +14,21 @@
 
 * {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+/* iOS Safari auto-zooms into any form field with font-size < 16px.
+   Keep fields at 16px on phones; desktop keeps the compact text-xs. */
+@media (max-width: 639px) {
+  input,
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
 }
 
 @keyframes tool-card-enter {
