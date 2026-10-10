@@ -30,7 +30,7 @@ const sections = [
   {
     heading: "The short version",
     body: [
-      "Byte-Kit uses no tracking cookies, no analytics cookies, and no advertising cookies. The only things stored in your browser are two functional preferences — your theme choice and your cookie-banner consent — kept in local storage on your own device. Nothing is sent to any server.",
+      "Byte-Kit does not run ads or sell data. It does use Google Analytics to understand aggregate usage (pages visited, device types) — analytics cookies are set by Google, collect no personal information, and IP addresses are anonymized. The tools themselves run locally in your browser; nothing you type or convert is sent to any server.",
     ],
   },
   {
@@ -52,9 +52,8 @@ const sections = [
       "Byte-Kit does not use any of the following:",
     ],
     list: [
-      "Analytics or performance cookies (no Google Analytics or similar).",
       "Advertising or targeting cookies.",
-      "Social media tracking pixels or third-party scripts.",
+      "Social media tracking pixels.",
       "HTTP cookies set by a server — the site is served as static files and sets none.",
     ],
   },

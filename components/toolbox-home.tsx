@@ -234,7 +234,7 @@ export function ToolboxHome() {
           </h1>
           <p className="mt-4 max-w-xl text-base leading-relaxed text-zinc-400 sm:text-lg">
             Format, convert, encode, and generate — everything runs locally in
-            your browser. No sign-up, no uploads, no tracking.
+            your browser. No sign-up, no uploads, no ads.
           </p>
 
           <div className="relative mt-8 max-w-xl">

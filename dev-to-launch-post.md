@@ -7,7 +7,7 @@ cover_image: https://byte-kit.dev/og-image.png
 
 Every developer has a folder of bookmarked "free online tools" — JSON formatters, Base64 encoders, image converters. And every one of them has the same problem: you paste your data into some stranger's server and hope for the best.
 
-I got tired of that tradeoff, so I built [Byte-Kit](https://byte-kit.dev/) — 24 developer tools that run 100% in your browser. No uploads, no accounts, no tracking. Your data never leaves your device.
+I got tired of that tradeoff, so I built [Byte-Kit](https://byte-kit.dev/) — 24 developer tools that run 100% in your browser. No uploads, no accounts — and nothing you paste ever leaves your device.
 
 ## What's in the box
 
