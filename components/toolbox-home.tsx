@@ -365,6 +365,12 @@ export function ToolboxHome() {
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-6 py-6 text-sm text-zinc-500 sm:flex-row">
           <span>© 2026 Byte-Kit</span>
           <div className="flex items-center gap-5">
+            <Link href="/about" className="transition-colors hover:text-zinc-200">
+              About
+            </Link>
+            <Link href="/contact" className="transition-colors hover:text-zinc-200">
+              Contact
+            </Link>
             <Link href="/privacy" className="transition-colors hover:text-zinc-200">
               Privacy
             </Link>

@@ -133,6 +133,12 @@ export function ToolShell({
         <footer className="mt-14 flex flex-col gap-3 border-t border-zinc-800/70 pt-6 text-sm text-zinc-500 sm:flex-row sm:items-center sm:justify-between">
           <span>Runs entirely in your browser.</span>
           <div className="flex items-center gap-5">
+            <Link href="/about" className="transition-colors hover:text-zinc-200">
+              About
+            </Link>
+            <Link href="/contact" className="transition-colors hover:text-zinc-200">
+              Contact
+            </Link>
             <Link href="/privacy" className="transition-colors hover:text-zinc-200">
               Privacy
             </Link>
