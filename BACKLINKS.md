@@ -17,7 +17,7 @@ Free collection of 24 developer tools: JSON formatter, JWT decoder, image conver
 ```
 **Long description (~300 chars):**
 ```
-Byte-Kit is a free, privacy-first toolkit of 24 developer utilities that run entirely in your browser. Includes JSON formatter & validator, PX to REM converter, JWT decoder, Base64/URL encoder, regex tester, color converter, password & UUID generator, plus image tools (compressor, HEIC/AVIF converters, EXIF remover, favicon generator, SVG optimizer). No accounts, no uploads, no tracking — your data never leaves your device.
+Byte-Kit is a free, privacy-first toolkit of 24 developer utilities that run entirely in your browser. Includes JSON formatter & validator, PX to REM converter, JWT decoder, Base64/URL encoder, regex tester, color converter, password & UUID generator, plus image tools (compressor, HEIC/AVIF converters, EXIF remover, favicon generator, SVG optimizer). No accounts, no uploads — your pasted tool data never leaves your device.
 ```
 **Categories:** Developer Tools, Web Development, Utilities
 **Platforms:** Web / Browser (Online)

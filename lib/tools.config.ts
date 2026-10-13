@@ -134,7 +134,7 @@ export const tools: ToolDefinition[] = [
   },
   {
     slug: "jwt-decoder",
-    title: "JWT Decoder",
+    title: "JWT Decoder Online",
     description: "Decode JWT headers and payloads locally without sending tokens to a server.",
     category: "Security",
     iconName: "Key",
