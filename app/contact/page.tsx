@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, Cube, GithubLogo } from "@phosphor-icons/react/dist/ssr";
+import { ArrowLeft, Cube, Envelope, GithubLogo } from "@phosphor-icons/react/dist/ssr";
 import { siteUrl, StructuredData } from "@/lib/structured-data";
 
 const repoUrl = "https://github.com/Shayan34789/byte-kit";
@@ -104,6 +104,34 @@ export default function ContactPage() {
             </a>
           </div>
 
+          <div className="mt-8 rounded-xl border border-zinc-800/80 bg-zinc-900/40 p-6 sm:p-8">
+            <div className="flex items-center gap-3">
+              <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-zinc-100 text-zinc-900">
+                <Envelope size={22} weight="bold" />
+              </span>
+              <div>
+                <h2 className="text-base font-semibold text-zinc-100">
+                  Email the developer
+                </h2>
+                <p className="text-sm text-zinc-500">
+                  For anything private or off the record
+                </p>
+              </div>
+            </div>
+            <p className="mt-4 text-sm leading-relaxed text-zinc-400">
+              Prefer email over a public issue? Write to the address below.
+              Bugs and tool requests are still best filed on GitHub so other
+              users can follow along.
+            </p>
+            <a
+              href="mailto:bytetips0@gmail.com"
+              className="mt-5 inline-flex items-center gap-2 rounded-lg bg-zinc-100 px-4 py-2 text-sm font-medium text-zinc-900 transition-colors hover:bg-white"
+            >
+              <Envelope size={16} weight="bold" />
+              <span>bytetips0@gmail.com</span>
+            </a>
+          </div>
+
           <div className="mt-8 text-sm leading-relaxed text-zinc-500">
             <p>
               For privacy or data questions, see the{" "}
@@ -113,9 +141,8 @@ export default function ContactPage() {
               >
                 Privacy Policy
               </Link>
-              . There&apos;s no support email and no account system — Byte-Kit
-              never asks for your personal details, so there&apos;s nothing to
-              write to it about.
+              . There&apos;s no account system — Byte-Kit never asks for your
+              personal details.
             </p>
           </div>
         </div>
