@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ToolShell } from "@/components/tool-shell";
 import { ToolWorkbench } from "@/components/tool-workbench";
-import { getTool, tools } from "@/lib/tools.config";
+import { getRelatedTools, getTool, tools } from "@/lib/tools.config";
 import { toolContent } from "@/lib/tool-content";
 import { siteUrl, StructuredData } from "@/lib/structured-data";
 
@@ -63,9 +63,7 @@ export default async function DynamicToolPage({
   if (!tool || tool.implemented === false) {
     notFound();
   }
-  const relatedTools = tools
-    .filter((candidate) => candidate.category === tool.category && candidate.slug !== tool.slug)
-    .slice(0, 3);
+  const relatedTools = getRelatedTools(tool.slug);
   const content = toolContent[tool.slug];
 
   return (

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { PxToRem } from "@/components/px-to-rem";
 import { ToolShell } from "@/components/tool-shell";
-import { getTool } from "@/lib/tools.config";
+import { getRelatedTools, getTool } from "@/lib/tools.config";
 import { toolContent } from "@/lib/tool-content";
 import { siteUrl, StructuredData } from "@/lib/structured-data";
 
@@ -46,7 +46,7 @@ export default function PxToRemPage() {
           }}
         />
       )}
-      <ToolShell title="PX to REM Converter" description="Convert pixel values to rem units with a customizable root font size." category="CSS" usage={getTool("px-to-rem")?.usage} content={content}>
+      <ToolShell title="PX to REM Converter" description="Convert pixel values to rem units with a customizable root font size." category="CSS" relatedTools={getRelatedTools("px-to-rem")} usage={getTool("px-to-rem")?.usage} content={content}>
         <PxToRem />
       </ToolShell>
     </>

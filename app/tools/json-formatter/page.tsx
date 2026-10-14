@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { JsonFormatter } from "@/components/json-formatter";
 import { ToolShell } from "@/components/tool-shell";
-import { getTool } from "@/lib/tools.config";
+import { getRelatedTools, getTool } from "@/lib/tools.config";
 import { toolContent } from "@/lib/tool-content";
 import { siteUrl, StructuredData } from "@/lib/structured-data";
 
@@ -46,7 +46,7 @@ export default function JsonFormatterPage() {
           }}
         />
       )}
-      <ToolShell title="JSON Formatter & Validator" description="Clean up, validate, beautify, or minify JSON without uploading it anywhere." category="Formatter" usage={getTool("json-formatter")?.usage} content={content}>
+      <ToolShell title="JSON Formatter & Validator" description="Clean up, validate, beautify, or minify JSON without uploading it anywhere." category="Formatter" relatedTools={getRelatedTools("json-formatter")} usage={getTool("json-formatter")?.usage} content={content}>
         <JsonFormatter />
       </ToolShell>
     </>

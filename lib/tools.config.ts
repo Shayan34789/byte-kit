@@ -365,3 +365,40 @@ export const tools: ToolDefinition[] = [
 ];
 
 export const getTool = (slug: string) => tools.find((tool) => tool.slug === slug);
+
+// Curated internal links: 3 related tools per page, chosen by workflow
+// adjacency (e.g. JWT Decoder <-> Base64), not just same-category. Every
+// tool page gets exactly 3 related links, including tools that are alone
+// in their category and would otherwise show none.
+export const relatedToolsMap: Record<string, string[]> = {
+  "json-formatter": ["json-yaml-csv", "regex-tester", "url-base64"],
+  "px-to-rem": ["glassmorphism-generator", "box-shadow-generator", "color-converter"],
+  "json-yaml-csv": ["json-formatter", "case-converter", "url-base64"],
+  "glassmorphism-generator": ["box-shadow-generator", "px-to-rem", "color-converter"],
+  "box-shadow-generator": ["glassmorphism-generator", "px-to-rem", "color-converter"],
+  "llm-token-counter": ["prompt-template-generator", "invisible-character-cleaner", "case-converter"],
+  "invisible-character-cleaner": ["llm-token-counter", "case-converter", "regex-tester"],
+  "jwt-decoder": ["url-base64", "password-uuid-generator", "json-formatter"],
+  "password-uuid-generator": ["jwt-decoder", "exif-remover", "invisible-character-cleaner"],
+  "image-svg-converter": ["batch-image-converter", "image-compressor", "avif-converter"],
+  "url-base64": ["jwt-decoder", "html-entity-encoder", "image-to-base64"],
+  "regex-tester": ["json-formatter", "case-converter", "invisible-character-cleaner"],
+  "case-converter": ["regex-tester", "json-formatter", "invisible-character-cleaner"],
+  "color-converter": ["glassmorphism-generator", "box-shadow-generator", "px-to-rem"],
+  "html-entity-encoder": ["url-base64", "image-to-base64", "regex-tester"],
+  "prompt-template-generator": ["llm-token-counter", "invisible-character-cleaner", "case-converter"],
+  "batch-image-converter": ["image-svg-converter", "image-compressor", "heic-converter"],
+  "image-compressor": ["batch-image-converter", "image-svg-converter", "avif-converter"],
+  "heic-converter": ["batch-image-converter", "image-compressor", "avif-converter"],
+  "avif-converter": ["image-svg-converter", "image-compressor", "heic-converter"],
+  "image-to-base64": ["url-base64", "html-entity-encoder", "svg-optimizer"],
+  "exif-remover": ["image-compressor", "heic-converter", "password-uuid-generator"],
+  "svg-optimizer": ["image-svg-converter", "favicon-generator", "image-to-base64"],
+  "favicon-generator": ["svg-optimizer", "image-svg-converter", "image-compressor"],
+};
+
+export const getRelatedTools = (slug: string): ToolDefinition[] =>
+  (relatedToolsMap[slug] ?? [])
+    .map((relatedSlug) => getTool(relatedSlug))
+    .filter((tool): tool is ToolDefinition => tool !== undefined)
+    .slice(0, 3);
