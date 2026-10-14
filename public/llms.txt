@@ -1,0 +1,38 @@
+# Byte-Kit
+
+> 24 free developer tools that run entirely in your browser — JSON formatter, JWT decoder, image converters, regex tester, and more. No uploads, no accounts, no signup. Your pasted data never leaves your device.
+
+## Tools
+
+- [JSON Formatter & Validator](https://byte-kit.dev/tools/json-formatter): Format, validate, beautify, and minify JSON online in your browser.
+- [PX to REM Converter](https://byte-kit.dev/tools/px-to-rem): Convert CSS pixels to rem units with a customizable root font size.
+- [JSON / YAML / CSV](https://byte-kit.dev/tools/json-yaml-csv): Convert JSON data to YAML or CSV format directly in your browser.
+- [Glassmorphism Generator](https://byte-kit.dev/tools/glassmorphism-generator): Generate customizable glassmorphism CSS with live visual preview.
+- [Box Shadow Generator](https://byte-kit.dev/tools/box-shadow-generator): Generate and customize CSS box shadows with live preview and copy-ready code.
+- [LLM Token Counter](https://byte-kit.dev/tools/llm-token-counter): Estimate LLM token counts for prompts and text with a local browser tool.
+- [Invisible Character Cleaner](https://byte-kit.dev/tools/invisible-character-cleaner): Detect and remove zero-width and hidden Unicode characters from text.
+- [JWT Decoder Online](https://byte-kit.dev/tools/jwt-decoder): Decode JWT headers and payloads locally without sending tokens to a server.
+- [Password & UUID Generator](https://byte-kit.dev/tools/password-uuid-generator): Generate secure passwords and UUID v4 identifiers with browser cryptography.
+- [Image & SVG Converter](https://byte-kit.dev/tools/image-svg-converter): Convert PNG, JPG, WebP, and SVG images locally using browser Canvas APIs.
+- [URL & Base64 Encoder](https://byte-kit.dev/tools/url-base64): Encode and decode URL strings and Base64 text locally in your browser.
+- [Regex Tester](https://byte-kit.dev/tools/regex-tester): Test regular expressions with live matches, flags, and instant feedback.
+- [Case Converter](https://byte-kit.dev/tools/case-converter): Convert text between sentence case, title case, lowercase, and uppercase styles.
+- [Color Converter](https://byte-kit.dev/tools/color-converter): Convert HEX colors to RGB and generate copy-ready CSS color values.
+- [HTML Entity Encoder](https://byte-kit.dev/tools/html-entity-encoder): Encode special characters as HTML entities for safer markup and text handling.
+- [Prompt Template Generator](https://byte-kit.dev/tools/prompt-template-generator): Create reusable structured prompts for AI and LLM workflows.
+- [Batch Image Converter](https://byte-kit.dev/tools/batch-image-converter): Convert many images at once to PNG, JPG, or WebP and download them as a ZIP.
+- [Image Compressor](https://byte-kit.dev/tools/image-compressor): Shrink image file sizes with quality and resize controls, right in your browser.
+- [HEIC Converter](https://byte-kit.dev/tools/heic-converter): Convert iPhone HEIC/HEIF photos to JPG, PNG, or WebP locally.
+- [AVIF Converter](https://byte-kit.dev/tools/avif-converter): Convert images to and from the modern AVIF format in your browser.
+- [Image to Base64](https://byte-kit.dev/tools/image-to-base64): Encode any image as a Base64 data URI for embedding in CSS or HTML.
+- [EXIF Remover](https://byte-kit.dev/tools/exif-remover): Strip hidden location and device metadata from photos before sharing.
+- [SVG Optimizer](https://byte-kit.dev/tools/svg-optimizer): Minify SVG markup by removing comments, whitespace, and editor cruft.
+- [Favicon Generator](https://byte-kit.dev/tools/favicon-generator): Turn one image into a multi-size favicon.ico plus PNG icons.
+
+## Pages
+
+- [About](https://byte-kit.dev/about): About Byte-Kit.
+- [Contact](https://byte-kit.dev/contact): Contact the Byte-Kit developer.
+- [Privacy Policy](https://byte-kit.dev/privacy): Privacy policy.
+- [Terms](https://byte-kit.dev/terms): Terms of use.
+- [Cookie Policy](https://byte-kit.dev/cookie-policy): Cookie policy.
