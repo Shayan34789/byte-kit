@@ -227,7 +227,7 @@ export const tools: ToolDefinition[] = [
   },
   {
     slug: "html-entity-encoder",
-    title: "HTML Entity Encoder",
+    title: "HTML Entity Encode Online",
     description: "Encode special characters as HTML entities for safer markup and text handling.",
     category: "Encoding",
     iconName: "Code",

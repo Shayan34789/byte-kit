@@ -18,7 +18,7 @@
 - [Regex Tester](https://byte-kit.dev/tools/regex-tester): Test regular expressions with live matches, flags, and instant feedback.
 - [Case Converter](https://byte-kit.dev/tools/case-converter): Convert text between sentence case, title case, lowercase, and uppercase styles.
 - [Color Converter](https://byte-kit.dev/tools/color-converter): Convert HEX colors to RGB and generate copy-ready CSS color values.
-- [HTML Entity Encoder](https://byte-kit.dev/tools/html-entity-encoder): Encode special characters as HTML entities for safer markup and text handling.
+- [HTML Entity Encode Online](https://byte-kit.dev/tools/html-entity-encoder): Encode special characters as HTML entities for safer markup and text handling.
 - [Prompt Template Generator](https://byte-kit.dev/tools/prompt-template-generator): Create reusable structured prompts for AI and LLM workflows.
 - [Batch Image Converter](https://byte-kit.dev/tools/batch-image-converter): Convert many images at once to PNG, JPG, or WebP and download them as a ZIP.
 - [Image Compressor](https://byte-kit.dev/tools/image-compressor): Shrink image file sizes with quality and resize controls, right in your browser.
