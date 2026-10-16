@@ -42,6 +42,38 @@ export default function ContactPage() {
           isPartOf: { "@type": "WebSite", name: "Byte-Kit", url: siteUrl },
         }}
       />
+      <StructuredData
+        data={{
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: [
+            {
+              "@type": "Question",
+              name: "How quickly will I get a reply?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Issues on GitHub get answered in the open, usually within a few days. Email is checked less often — it is there for things you do not want posted publicly.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "Can I suggest a new tool?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Yes — open an issue on the repository and describe what the tool should do and when you would reach for it. Requests with a clear, concrete use case get the most attention.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "I found a mistake on a page — where do I report it?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "File it as a bug on GitHub with the page URL and what you saw. Fixes ship with the next deploy, which usually lands within a day of the change being committed.",
+              },
+            },
+          ],
+        }}
+      />
       <main className="min-h-[100dvh] bg-[#090a0b] font-sans text-[#f4f4f5] selection:bg-blue-500/20 selection:text-blue-300">
         <header className="sticky top-0 z-40 border-b border-zinc-800/80 bg-[#090a0b]/85 backdrop-blur-md">
           <div className="mx-auto flex max-w-4xl items-center justify-between px-6 py-4">
@@ -130,6 +162,44 @@ export default function ContactPage() {
               <Envelope size={16} weight="bold" />
               <span>bytetips0@gmail.com</span>
             </a>
+          </div>
+
+          <div className="mt-8 rounded-xl border border-zinc-800/80 bg-zinc-900/40 p-6 sm:p-8">
+            <h2 className="text-base font-semibold text-zinc-100">
+              Common questions
+            </h2>
+            <div className="mt-4 space-y-5">
+              <div>
+                <h3 className="text-sm font-semibold text-zinc-200">
+                  How quickly will I get a reply?
+                </h3>
+                <p className="mt-1 text-sm leading-relaxed text-zinc-400">
+                  Issues on GitHub get answered in the open, usually within a
+                  few days. Email is checked less often — it&apos;s there for
+                  things you don&apos;t want posted publicly.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-sm font-semibold text-zinc-200">
+                  Can I suggest a new tool?
+                </h3>
+                <p className="mt-1 text-sm leading-relaxed text-zinc-400">
+                  Yes — open an issue on the repository and describe what the
+                  tool should do and when you&apos;d reach for it. Requests
+                  with a clear, concrete use case get the most attention.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-sm font-semibold text-zinc-200">
+                  I found a mistake on a page — where do I report it?
+                </h3>
+                <p className="mt-1 text-sm leading-relaxed text-zinc-400">
+                  File it as a bug on GitHub with the page URL and what you
+                  saw. Fixes ship with the next deploy, which usually lands
+                  within a day of the change being committed.
+                </p>
+              </div>
+            </div>
           </div>
 
           <div className="mt-8 text-sm leading-relaxed text-zinc-500">
