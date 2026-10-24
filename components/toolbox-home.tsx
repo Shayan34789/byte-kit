@@ -24,6 +24,11 @@ import {
   Images,
   FileImage,
   Star,
+  Database,
+  GitBranch,
+  Hash,
+  ShieldCheck,
+  ArrowsLeftRight,
   ArrowUpRight,
   Command,
   X,
@@ -72,6 +77,16 @@ function getToolIcon(name: string) {
       return FileImage;
     case "Star":
       return Star;
+    case "Database":
+      return Database;
+    case "GitBranch":
+      return GitBranch;
+    case "Hash":
+      return Hash;
+    case "ShieldCheck":
+      return ShieldCheck;
+    case "ArrowsLeftRight":
+      return ArrowsLeftRight;
     default:
       return Sparkle;
   }

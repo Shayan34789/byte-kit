@@ -1,6 +1,6 @@
 # Byte-Kit
 
-> 24 free developer tools that run entirely in your browser — JSON formatter, JWT decoder, image converters, regex tester, and more. No uploads, no accounts, no signup. Your pasted data never leaves your device.
+> 33 free developer tools that run entirely in your browser — JSON formatter, JWT decoder, image converters, regex tester, SQL formatter, cURL converter, Git command builder, and more. No uploads, no accounts, no signup. Your pasted data never leaves your device.
 
 ## Tools
 
@@ -28,6 +28,15 @@
 - [EXIF Remover](https://byte-kit.dev/tools/exif-remover): Strip hidden location and device metadata from photos before sharing.
 - [SVG Optimizer](https://byte-kit.dev/tools/svg-optimizer): Minify SVG markup by removing comments, whitespace, and editor cruft.
 - [Favicon Generator](https://byte-kit.dev/tools/favicon-generator): Turn one image into a multi-size favicon.ico plus PNG icons.
+- [SQL Formatter & Minifier](https://byte-kit.dev/tools/sql-formatter): Format and minify SQL queries for PostgreSQL, MySQL, SQLite, and BigQuery.
+- [cURL to Code Generator](https://byte-kit.dev/tools/curl-converter): Convert curl commands into JavaScript, Python, Go, or PHP code instantly.
+- [Git Command Builder](https://byte-kit.dev/tools/git-command-builder): Build exact Git commands for undoing, rebasing, stashing, and cherry-picking.
+- [HMAC & Hash Generator](https://byte-kit.dev/tools/hash-generator): Generate SHA-256, SHA-512, MD5, and HMAC hashes locally with WebCrypto.
+- [Bcrypt Hash Tester](https://byte-kit.dev/tools/bcrypt-tester): Hash passwords and verify them against bcrypt or Argon2id hashes, client-side.
+- [Tailwind ↔ CSS Converter](https://byte-kit.dev/tools/tailwind-css-converter): Convert common CSS declarations to Tailwind classes and back again.
+- [SVG to React Component](https://byte-kit.dev/tools/svg-to-component): Turn SVG markup into a typed TypeScript React component or Vue SFC.
+- [CSS Gradient Generator](https://byte-kit.dev/tools/gradient-generator): Design multi-stop linear, radial, and mesh-style gradients with live preview.
+- [JSON to TypeScript](https://byte-kit.dev/tools/json-to-typescript): Generate clean TypeScript interfaces from JSON data or JSON Schema.
 
 ## Pages
 

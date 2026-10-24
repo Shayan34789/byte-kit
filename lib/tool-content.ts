@@ -123,7 +123,7 @@ export const toolContent: Record<string, ToolContent> = {
   },
   "llm-token-counter": {
     details: [
-      "The LLM Token Counter estimates how many tokens your text will consume in large language models. Paste a prompt and see token counts, character-to-token ratios, and estimated costs across popular models — all computed locally with a BPE-style tokenizer approximation.",
+      "The LLM Token Counter estimates how many tokens your text will consume in large language models. Paste a prompt and see token counts, character-to-token ratios, and estimated costs across popular models — all computed locally with a BPE-style tokenizer approximation. Switch to Prompt breakdown mode to split a chat transcript into system, user, and assistant roles and see per-role token counts using the same approximation.",
       "Staying under context limits matters when building prompts, RAG pipelines, or chat applications. This tool helps you trim prompts before sending them to paid APIs, avoiding truncated outputs and surprise bills.",
     ],
     faqs: [
@@ -261,7 +261,7 @@ export const toolContent: Record<string, ToolContent> = {
   },
   "regex-tester": {
     details: [
-      "The Regex Tester lets you build and debug regular expressions against live text. Type a pattern and flags, and matches highlight instantly with capture group breakdowns — no more guessing why a pattern fails in production.",
+      "The Regex Tester lets you build and debug regular expressions against live text. Type a pattern and flags, and matches highlight instantly with capture group breakdowns — no more guessing why a pattern fails in production. The Pattern explained panel breaks your regex down piece by piece in plain English: groups (including named groups), character classes, quantifiers, anchors, alternation, and flags.",
       "It uses JavaScript's regex engine, so behavior matches what you'd get in Node.js or the browser. Test edge cases like empty strings, unicode, and multiline input before committing a pattern to your codebase.",
     ],
     faqs: [
@@ -532,6 +532,213 @@ export const toolContent: Record<string, ToolContent> = {
         question: "Should I still gzip SVGs after optimizing?",
         answer:
           "Yes — the two stack. Optimization removes redundant content; gzip compresses what remains. Together they typically cut SVG weight by 70–90% versus raw exports.",
+      },
+    ],
+  },
+  "sql-formatter": {
+    details: [
+      "The SQL Formatter takes messy, single-line queries and lays them out with consistent indentation and keyword casing, or compresses formatted SQL down to a single line for pasting into code. Dialects matter — PostgreSQL, MySQL, SQLite, and BigQuery each have quirks in placeholder syntax and function names, so pick your dialect before formatting.",
+      "Formatting is not just cosmetic: a readable query is far easier to debug, review, and optimize. The minifier is handy when embedding SQL in application code or API payloads where whitespace is wasted bytes.",
+    ],
+    faqs: [
+      {
+        question: "Which SQL dialects are supported?",
+        answer:
+          "PostgreSQL, MySQL, SQLite, and BigQuery. The formatter uses dialect-aware parsing, so dialect-specific syntax like BigQuery's backtick identifiers or PostgreSQL's dollar-quoted strings is handled correctly.",
+      },
+      {
+        question: "Is my SQL sent anywhere?",
+        answer:
+          "No. Formatting runs entirely in your browser. Queries often contain table names, schemas, and sometimes literal values — none of it leaves your device.",
+      },
+      {
+        question: "What's the difference between Format and Minify?",
+        answer:
+          "Format expands the query across lines with indentation for readability. Minify collapses it to a single line with minimal whitespace, which is useful for embedding SQL in code or config files.",
+      },
+    ],
+  },
+  "curl-converter": {
+    details: [
+      "The cURL to Code Generator turns a curl command — the kind you copy from browser DevTools or API docs — into working code for JavaScript (fetch or axios), Python (requests), Go, or PHP. It parses the URL, method, headers, request body, and basic auth, then emits idiomatic code for your target language.",
+      "If your command uses a flag the converter doesn't understand, it says so plainly instead of generating code that silently drops an option. That matters: a missing header or body field is a bug that looks like a working request.",
+    ],
+    faqs: [
+      {
+        question: "Which curl flags are supported?",
+        answer:
+          "URL, -X/--request, -H/--header, -d/--data (including --data-raw, --data-binary, and --json), -u/--user, --compressed, -L, and -A/--user-agent. Display-only flags like -s and -v are ignored. Anything else is reported as unsupported rather than guessed.",
+      },
+      {
+        question: "Why did my conversion fail?",
+        answer:
+          "Usually an unsupported flag or a missing URL. The error message names the exact flag so you can simplify the command — for example, replacing an obscure auth flag with an explicit -H Authorization header.",
+      },
+      {
+        question: "Is the generated code production-ready?",
+        answer:
+          "It's a correct starting point: method, URL, headers, and body are all carried over. Add your own error handling, timeouts, and retries around it before shipping.",
+      },
+    ],
+  },
+  "git-command-builder": {
+    details: [
+      "The Git Command Builder turns 'how do I…' Git questions into exact commands. Pick a scenario — undoing a commit, interactive rebasing, stashing, cherry-picking, amending, discarding file changes, or recovering a deleted branch — fill in the details, and get the command plus a plain-English explanation of what it does.",
+      "Git's danger is that similar-looking commands have very different consequences: reset --soft keeps your changes, reset --hard destroys them. Every destructive command here carries an explicit warning, so you know the risk before you paste it into a terminal.",
+    ],
+    faqs: [
+      {
+        question: "What's the difference between reset --soft and --hard?",
+        answer:
+          "--soft moves the branch pointer back but keeps your changes staged. --hard moves it back and discards the changes from your working tree entirely. Use --hard only when you're sure you don't need those changes.",
+      },
+      {
+        question: "Can I recover a commit I undid with --hard?",
+        answer:
+          "Often, yes — Git keeps a reflog of where HEAD has been. Run git reflog, find the commit hash, and reset or branch back to it. Recovery gets harder after garbage collection, so act quickly.",
+      },
+      {
+        question: "Is it safe to rebase commits I've already pushed?",
+        answer:
+          "No — rebasing rewrites history, so teammates' copies diverge and pushes get messy. Rebase only local, unpushed commits; for shared history, prefer git revert, which adds a new commit that undoes the change.",
+      },
+    ],
+  },
+  "hash-generator": {
+    details: [
+      "The HMAC & Hash Generator computes SHA-256, SHA-512, and MD5 digests — or HMAC-SHA-256/512 keyed hashes — entirely in your browser. SHA-256 and SHA-512 run on the WebCrypto API; MD5 uses a small pure-JavaScript implementation because WebCrypto deliberately does not offer MD5.",
+      "Hashes are the backbone of integrity checks, API signatures, and password storage. HMAC adds a secret key, so the same input produces a different digest for each key — that's what makes webhook signatures and API authentication work.",
+    ],
+    faqs: [
+      {
+        question: "Why is there no MD5 in WebCrypto?",
+        answer:
+          "MD5 is cryptographically broken for security purposes, so the WebCrypto standard omits it. This tool includes a local MD5 implementation anyway because it's still the standard for legacy checksums and file-integrity comparisons.",
+      },
+      {
+        question: "When should I use HMAC instead of a plain hash?",
+        answer:
+          "When you need to prove who produced the hash, not just what the data is. A plain hash verifies integrity; an HMAC with a shared secret verifies authenticity, which is why APIs sign requests with HMAC.",
+      },
+      {
+        question: "Are my inputs sent to a server?",
+        answer:
+          "No. Hashing happens locally — SHA via WebCrypto, MD5 via local code. Your text and keys never leave the browser.",
+      },
+    ],
+  },
+  "bcrypt-tester": {
+    details: [
+      "The Bcrypt Hash Tester hashes passwords with bcrypt or Argon2id and verifies passwords against existing hashes — all client-side. Bcrypt runs on bcryptjs; Argon2id runs on WebAssembly in your browser. Nothing is transmitted, which matters because these are real credentials and real hashes.",
+      "Never store plain-text passwords: a hash is a one-way fingerprint. Bcrypt and Argon2 are deliberately slow, so even if a database leaks, brute-forcing each password takes far too long to be practical. Argon2id is the current OWASP recommendation; bcrypt remains the most widely deployed.",
+    ],
+    faqs: [
+      {
+        question: "What's the difference between bcrypt and Argon2id?",
+        answer:
+          "Both are slow, salted password hashes designed to resist brute force. Argon2id (winner of the Password Hashing Competition) is memory-hard, resisting GPU cracking better than bcrypt. Bcrypt is older, simpler, and supported almost everywhere.",
+      },
+      {
+        question: "What does the cost factor do?",
+        answer:
+          "It controls how slow hashing is: each +1 doubles the work. Cost 10 takes a fraction of a second; cost 12 takes about four times longer. Higher cost means stronger protection but slower logins — 10–12 is the usual range.",
+      },
+      {
+        question: "Why does verifying take a moment?",
+        answer:
+          "That's the point. Password hashing is intentionally expensive — milliseconds of delay per login are invisible to users but make bulk cracking infeasible for attackers.",
+      },
+    ],
+  },
+  "tailwind-css-converter": {
+    details: [
+      "The Tailwind ↔ CSS Converter translates between plain CSS declarations and Tailwind utility classes in both directions. Paste display, spacing, typography, color, and radius declarations and get the matching utilities — or paste utilities and get the CSS they compile to.",
+      "Coverage is deliberately scoped to common properties: layout, spacing scale, font sizes and weights, colors (including arbitrary hex values), and border radius. Anything outside that scope is listed as unconverted rather than silently dropped, so you can finish the conversion by hand with confidence about what's done.",
+    ],
+    faqs: [
+      {
+        question: "Why isn't my whole stylesheet converted?",
+        answer:
+          "This converter covers common properties — layout, spacing, typography, color, and radius — not arbitrary CSS. Complex values (gradients, animations, custom properties) are listed as unconverted so nothing is silently lost.",
+      },
+      {
+        question: "How are pixel values mapped to the spacing scale?",
+        answer:
+          "Tailwind's spacing scale is 4px per unit, so 16px becomes 4 and 8px becomes 2. Values off the scale are emitted as arbitrary values like mt-[13px], which Tailwind supports natively.",
+      },
+      {
+        question: "Does the Tailwind-to-CSS output match what Tailwind compiles?",
+        answer:
+          "For the covered utilities, yes — the values come from Tailwind's default theme. Your project's custom theme (custom colors, spacing) won't be reflected, so treat the output as a starting point.",
+      },
+    ],
+  },
+  "svg-to-component": {
+    details: [
+      "The SVG to React Component tool turns raw SVG markup into a typed TypeScript React component or a Vue single-file component. It rewrites SVG attributes to their JSX equivalents — class becomes className, stroke-width becomes strokeWidth — and optionally strips width and height so the icon sizes through props.",
+      "Inlining SVGs as components beats <img> tags for icons: they inherit currentColor, accept props, tree-shake with the rest of your code, and never trigger an extra HTTP request. Paste an export from Figma or Illustrator and get a component you can drop straight into a codebase.",
+    ],
+    faqs: [
+      {
+        question: "Why do attribute names change?",
+        answer:
+          "JSX doesn't allow hyphenated attribute names, so SVG's stroke-width must become strokeWidth and class must become className. The converter applies the standard mapping automatically, including xlink attributes.",
+      },
+      {
+        question: "Should I strip width and height?",
+        answer:
+          "Usually yes. With them stripped, the component accepts width, height, and className from its parent, so one icon works at any size. Keep them only when the SVG must render at a fixed size.",
+      },
+      {
+        question: "Does it work with SVGs from Figma or Illustrator?",
+        answer:
+          "Yes — paste the exported markup directly. Editor metadata and comments are stripped. For the smallest output, run the markup through the SVG Optimizer first.",
+      },
+    ],
+  },
+  "gradient-generator": {
+    details: [
+      "The CSS Gradient Generator builds multi-stop linear and radial gradients with a live preview and copy-ready CSS. Add color stops, drag their positions, set the angle or radial position, and watch the result update in real time.",
+      "The mesh-style mode layers several soft radial gradients over a dark base to mimic the colorful blob look popular in modern landing pages. Honest note: true mesh gradients are not pure CSS — this is the closest CSS-only equivalent, and it's labeled as such in the tool.",
+    ],
+    faqs: [
+      {
+        question: "What's the difference between linear and radial gradients?",
+        answer:
+          "Linear gradients blend colors along a straight line at an angle; radial gradients blend outward from a point, usually the center. Radial works well for glows and vignettes; linear for backgrounds and dividers.",
+      },
+      {
+        question: "Are mesh gradients real CSS?",
+        answer:
+          "Not literally — true mesh gradients need SVG filters or canvas. The mesh-style mode here approximates the look with layered radial gradients, which is pure CSS and works everywhere.",
+      },
+      {
+        question: "How do I use the generated CSS?",
+        answer:
+          "Copy the background declaration into any element's stylesheet. It works in all modern browsers with no prefixes needed.",
+      },
+    ],
+  },
+  "json-to-typescript": {
+    details: [
+      "The JSON to TypeScript tool turns a JSON sample — or a full JSON Schema — into clean TypeScript interfaces or type aliases. Nested objects become named interfaces, arrays of objects merge their keys (keys missing from some items become optional), and mixed values become unions.",
+      "Writing types by hand from API responses is slow and error-prone; generating them from a real payload guarantees the types match what the API actually returns. Paste a response, copy the types, and your editor starts catching shape mismatches immediately.",
+    ],
+    faqs: [
+      {
+        question: "Does it accept JSON Schema as well as JSON samples?",
+        answer:
+          "Yes. If the input looks like a schema (properties, type, or $schema), it's converted using its required list — required fields stay required, everything else becomes optional.",
+      },
+      {
+        question: "Why are some fields marked optional?",
+        answer:
+          "For arrays of objects, a key present in only some items becomes optional (?), because real data may omit it. For single objects, every key is required, matching the sample exactly.",
+      },
+      {
+        question: "What about null values?",
+        answer:
+          "A null in the sample produces a null type in a union (for example string | null), so the type honestly reflects that the field can be absent or null in practice.",
       },
     ],
   },
